@@ -1,0 +1,33 @@
+.mainContent {
+  width: 100%;
+  height: 662px;
+  /*color: #efefef;*/
+  background-image: url("../graphics/bg.png");
+  background-size: cover;
+}
+
+.root {
+  width: 100px;
+  height: 50px;
+  float: right;
+  margin-right: 40px;
+  margin-top: 20px;
+  display: flex;
+  flexWrap: wrap;
+  justifyContent: space-around
+}
+
+.gridList {
+  display: flex;
+  flexWrap: nowrap;
+  overflowX: auto;
+}
+
+.menuPic {
+  width: 52px;
+  height: 14px;
+  background-image: url("../graphics/menu.png");
+  margin-top: 16.3px;
+  margin-left: -15px;
+}
+
