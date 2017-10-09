@@ -39,6 +39,12 @@ const material_styles = {
   }
 };
 
+const window_height = document.documentElement.clientHeight;
+const window_width = document.documentElement.clientWidth;
+const bg_width = window_width / 1500 * 600; //背景图中拼图在页面中显示的宽度
+const register_form_width = 400; //注册表单的宽度，规定在SignUpPage.css文件中
+const register_form_height = 465; //注册表单的高度，规定在SignUpPage.css文件中
+
 class SignUpPage extends React.Component {
 
   getChildContext() {
@@ -49,9 +55,14 @@ class SignUpPage extends React.Component {
 
     return (
       <Layout>
-        <Content className={styles.mainContent} style={{height: document.documentElement.clientHeight}}>
+        <Content className={styles.mainContent} style={{height: window_height}}>
 
-          <div className={styles.sign_up_form}>
+          <div className={styles.sign_up_form}
+               style={{
+                 marginRight: (window_width - bg_width - register_form_width)/2,
+                 paddingTop: (window_height - register_form_height)/2
+               }}>
+
             <div className={styles.logo_div}>
               <img src={imgLogo} className={styles.img_logo}/>
             </div>
