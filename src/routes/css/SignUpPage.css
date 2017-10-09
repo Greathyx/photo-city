@@ -1,0 +1,47 @@
+.mainContent {
+  width: 100%;
+  min-width: 1200px;
+  background: url("../../assets/graphics/register.png")  no-repeat center 0;
+  background-size: 100% 100%;
+}
+
+.sign_up_form {
+  width: 400px;
+  height: 100%;
+  float: right;
+  margin-right: 200px;
+  padding-top: 100px;
+}
+
+.logo_div {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.img_logo {
+  width: 175px;
+  height: 93px;
+  margin-right: 10px;
+}
+
+.title{
+  width: 100%;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: 500;
+}
+
+.terms {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  color: #bdbdbd;
+}
+
+.link, .link:hover {
+  color: #9E9E9E;
+  text-decoration: underline;
+  /*font-weight: bold;*/
+}
+

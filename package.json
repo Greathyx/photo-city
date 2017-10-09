@@ -16,7 +16,9 @@
     "dva": "^1.2.1",
     "material-ui": "^0.19.3",
     "react": "^15.4.0",
-    "react-dom": "^15.4.0"
+    "react-dom": "^15.4.0",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.74.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
