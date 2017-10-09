@@ -23,9 +23,9 @@
 }
 
 .img_logo {
-  width: 175px;
-  height: 93px;
-  margin-right: 10px;
+  width: 176px;
+  height: 95px;
+  margin-left: 7px;
 }
 
 .title {
@@ -46,5 +46,9 @@
   color: #9E9E9E;
   text-decoration: underline;
   /*font-weight: bold;*/
+}
+
+.link:hover {
+  color: #333333;
 }
 
