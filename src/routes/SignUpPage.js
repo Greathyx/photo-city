@@ -10,7 +10,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 import {Layout, img} from 'antd';
 
 
@@ -48,6 +48,8 @@ const window_width = document.documentElement.clientWidth;
 const bg_width = window_width / 1500 * 600; //背景图中拼图在页面中显示的宽度
 const register_form_width = 400; //注册表单的宽度，规定在SignUpPage.css文件中
 const register_form_height = 465; //注册表单的高度，规定在SignUpPage.css文件中
+const paper_height = 600;
+const paper_width = 500;
 
 class SignUpPage extends React.Component {
 
@@ -99,59 +101,63 @@ class SignUpPage extends React.Component {
     return (
       <Layout>
         <Content className={styles.mainContent} style={{height: window_height}}>
+          <Paper zDepth={1} className={styles.paper}
+                 style={{
+                   marginLeft: (window_width - paper_width) / 2,
+                   marginTop: (window_height - paper_height) / 2
+                 }}>
+            <div className={styles.sign_up_form}
+                 style={{
+                   marginLeft: (paper_width - register_form_width) / 2,
+                   paddingTop: (paper_height - register_form_height) / 2
+                 }}>
 
-          <div className={styles.sign_up_form}
-               style={{
-                 marginRight: (window_width - bg_width - register_form_width) / 2,
-                 paddingTop: (window_height - register_form_height) / 2
-               }}>
-
-            <div className={styles.logo_div}>
-              <img src={imgLogo} className={styles.img_logo}/>
+              <div className={styles.logo_div}>
+                <img src={imgLogo} className={styles.img_logo}/>
+              </div>
+              <div className={styles.title}>
+                Join
+              </div>
+              <TextField
+                hintText="e.g. 123@gmail.com"
+                floatingLabelText="Email address"
+                fullWidth={true}
+                underlineStyle={material_styles.underlineStyle}
+                floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
+                underlineFocusStyle={material_styles.underlineFocusStyle}
+              /><br />
+              <TextField
+                hintText="only letters, numbers, and underscores"
+                floatingLabelText="Username"
+                fullWidth={true}
+                underlineStyle={material_styles.underlineStyle}
+                floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
+                underlineFocusStyle={material_styles.underlineFocusStyle}
+              /><br />
+              <TextField
+                hintText="min. 6 char"
+                floatingLabelText="Password"
+                type="password"
+                fullWidth={true}
+                underlineStyle={material_styles.underlineStyle}
+                floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
+                underlineFocusStyle={material_styles.underlineFocusStyle}
+              /><br />
+              <FlatButton
+                label="Join"
+                fullWidth={true}
+                backgroundColor="#000000"
+                hoverColor="#245168"
+                labelStyle={material_styles.buttonColorStyle}
+                style={{marginTop: 20}}
+              /><br />
+              <div className={styles.terms}>
+                By joining, you agree to the <a className={styles.link} onClick={this.handleOpenTerms}>Terms</a> and <a
+                className={styles.link} onClick={this.handleOpenPrivacyPolicy}>Privacy
+                Policy</a>.
+              </div>
             </div>
-            <div className={styles.title}>
-              Join
-            </div>
-            <TextField
-              hintText="e.g. 123@gmail.com"
-              floatingLabelText="Email address"
-              fullWidth={true}
-              underlineStyle={material_styles.underlineStyle}
-              floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
-              underlineFocusStyle={material_styles.underlineFocusStyle}
-            /><br />
-            <TextField
-              hintText="only letters, numbers, and underscores"
-              floatingLabelText="Username"
-              fullWidth={true}
-              underlineStyle={material_styles.underlineStyle}
-              floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
-              underlineFocusStyle={material_styles.underlineFocusStyle}
-            /><br />
-            <TextField
-              hintText="min. 6 char"
-              floatingLabelText="Password"
-              type="password"
-              fullWidth={true}
-              underlineStyle={material_styles.underlineStyle}
-              floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
-              underlineFocusStyle={material_styles.underlineFocusStyle}
-            /><br />
-            <FlatButton
-              label="Join"
-              fullWidth={true}
-              backgroundColor="#000000"
-              hoverColor="#245168"
-              labelStyle={material_styles.buttonColorStyle}
-              style={{marginTop: 20}}
-            /><br />
-            <div className={styles.terms}>
-              By joining, you agree to the <a className={styles.link} onClick={this.handleOpenTerms}>Terms</a> and <a
-              className={styles.link} onClick={this.handleOpenPrivacyPolicy}>Privacy
-              Policy</a>.
-            </div>
-          </div>
-
+          </Paper>
           <Dialog
             title="Terms"
             actions={actions_term}
@@ -169,11 +175,13 @@ class SignUpPage extends React.Component {
               you, constitutes an agreement by you and Photo City to be bound by the terms and conditions in these Terms
               of Service.
               <br/><br/>
+
               PLEASE READ THESE TERMS OF SERVICE CAREFULLY. BY REGISTERING FOR OR OTHERWISE USING THE SERVICE, YOU ARE
               TELLING US THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS OF SERVICE, INCLUDING OUR
               PRIVACY POLICY (TOGETHER, THESE “TERMS”). If you don’t agree with anything we propose in these Terms,
               please don’t (and you don’t have our permission to) use any part of the Service.
               <br/><br/>
+
               THIS PART IS REALLY IMPORTANT: These Terms require that if we get into a dispute with you relating to the
               Service (or vice versa), the dispute will be resolved by BINDING ARBITRATION. This means that YOU AGREE TO
               GIVE UP YOUR RIGHT TO GO TO COURT TO SUE US (OR BE SUED BY US) UNDER THIS CONTRACT (except for some

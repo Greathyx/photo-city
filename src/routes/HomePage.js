@@ -14,10 +14,21 @@ import MenuItem from 'material-ui/MenuItem/MenuItem';
 import IconButton from 'material-ui/IconButton/IconButton';
 import DehazeIcon from 'material-ui/svg-icons/image/dehaze';
 import {GridList} from 'material-ui/GridList';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
+import LoginForm from '../components/LoginForm';
 
 const {Content} = Layout;
 
+const material_styles = {
+  flatButtonLabelStyle: {
+    color: '#245168',
+  },
+  dialogStyle: {
+    width: 600
+  }
+};
 
 class HomePage extends React.Component {
 
@@ -25,7 +36,30 @@ class HomePage extends React.Component {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
 
+  state = {
+    open: false,
+  };
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+
   render() {
+
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose}
+        labelStyle={material_styles.flatButtonLabelStyle}
+      />
+    ];
+
     return (
       <Layout>
         {/*使用document.body.clientHeight可能会导致高度为0，改用document.documentElement.clientHeight*/}
@@ -40,11 +74,20 @@ class HomePage extends React.Component {
               >
                 <Link to="/homepage"><MenuItem primaryText="Home"/></Link>
                 <MenuItem primaryText="Gallery"/>
-                <MenuItem primaryText="Login"/>
+                <MenuItem primaryText="Login" onClick={this.handleOpen}/>
                 <Link to="/sign-up"><MenuItem primaryText="Join"/></Link>
               </IconMenu>
             </GridList>
           </div>
+
+          <Dialog
+            actions={actions}
+            modal={true}
+            open={this.state.open}
+            contentStyle={material_styles.dialogStyle}
+          >
+            <LoginForm/>
+          </Dialog>
         </Content>
       </Layout>
     );

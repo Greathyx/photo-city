@@ -1,18 +1,6 @@
-.mainContent {
-  width: 100%;
-  min-width: 1200px;
-  background: url("../../assets/graphics/register.jpg") no-repeat center 0;
-  background-size: 100% 100%;
-}
-
-.paper {
-  width: 500px;
-  height: 600px;
-}
-
-.sign_up_form {
-  width: 400px;
-  height: 465px;
+.login_form {
+  /*width: 510px;*/
+  margin-top: 10px;
 }
 
 .logo_div {
@@ -34,15 +22,15 @@
   font-weight: 500;
 }
 
-.terms {
+.join {
   width: 100%;
   text-align: center;
   margin-top: 20px;
-  color: #bdbdbd;
+  color: #333333;
 }
 
 .link {
-  color: #9E9E9E;
+  color: #bdbdbd;
   text-decoration: underline;
 }
 
@@ -50,4 +38,3 @@
   color: #333333;
   text-decoration: underline;
 }
-
