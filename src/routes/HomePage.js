@@ -48,7 +48,6 @@ class HomePage extends React.Component {
     this.setState({open: false});
   };
 
-
   render() {
 
     const actions = [
@@ -73,7 +72,7 @@ class HomePage extends React.Component {
                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
               >
                 <Link to="/homepage"><MenuItem primaryText="Home"/></Link>
-                <MenuItem primaryText="Gallery"/>
+                <Link to="/gallery"><MenuItem primaryText="Gallery"/></Link>
                 <MenuItem primaryText="Login" onClick={this.handleOpen}/>
                 <Link to="/sign-up"><MenuItem primaryText="Join"/></Link>
               </IconMenu>

@@ -1,0 +1,54 @@
+.mainContent {
+  width: 100%;
+  min-width: 1200px;
+  height: auto;
+}
+
+.header {
+  background: #ffffff;
+  color: #333333;
+  /*border-bottom: 1px solid #e7e8ea;*/
+  /*position: fixed;*/
+}
+
+.logo {
+  width: 65px;
+  height: 34px;
+}
+
+.title {
+  position: relative;
+  margin-left: 10px;
+}
+
+.link {
+  font-size: 14px;
+  color: #9E9E9E;
+}
+
+.link:hover {
+  font-size: 14px;
+  color: #333333;
+}
+
+/*.searchField {*/
+  /*position: relative;*/
+  /*margin-right: 10px;*/
+  /*width: 400px;*/
+  /*height: 40px;*/
+  /*!*float: right;*!*/
+  /*padding: 0 30px 2px 42px;*/
+  /*font-size: 14px;*/
+  /*color: #111;*/
+  /*background-color: #f1f1f1;*/
+  /*border: 1px solid transparent;*/
+  /*border-radius: 20px;*/
+  /*outline: none;*/
+  /*transition: all .2s ease-in-out;*/
+  /*-webkit-appearance: none;*/
+/*}*/
+
+/*.searchField:focus {*/
+  /*background-color: #ffffff;*/
+  /*border: 1px solid #bdbdbd;*/
+/*}*/

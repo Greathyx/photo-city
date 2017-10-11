@@ -1,5 +1,8 @@
 import dva from 'dva';
 import './index.css';
+import 'react-mdl/extra/material.css';
+import 'react-mdl/extra/material.js';
+import 'semantic-ui-css/semantic.min.css';
 
 // 1. Initialize
 const app = dva();

@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {Link} from 'dva/router';
-import styles from './LoginForm.css';
+import styles from './css/LoginForm.css';
 import imgLogo from '../assets/graphics/logo.png';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
