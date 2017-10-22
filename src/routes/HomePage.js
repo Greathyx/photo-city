@@ -20,6 +20,7 @@ import FlatButton from 'material-ui/FlatButton';
 import LoginForm from '../components/LoginForm';
 
 const {Content} = Layout;
+const window_height = document.documentElement.clientHeight;
 
 const material_styles = {
   flatButtonLabelStyle: {
@@ -62,7 +63,7 @@ class HomePage extends React.Component {
     return (
       <Layout>
         {/*使用document.body.clientHeight可能会导致高度为0，改用document.documentElement.clientHeight*/}
-        <Content className={styles.mainContent} style={{height: document.documentElement.clientHeight}}>
+        <Content className={styles.mainContent} style={{height: window_height}}>
           <div className={styles.root}>
             <GridList className={styles.gridList} cols={2}>
               <div className={styles.menuPic}/>

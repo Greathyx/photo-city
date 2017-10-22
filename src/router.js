@@ -2,8 +2,8 @@ import React from 'react';
 import { Router, Route } from 'dva/router';
 import HomePage from './routes/HomePage';
 import SignUpPage from './routes/SignUpPage';
-import GalleryPage from './routes/GalleryPage'
-import IndexPage from './routes/IndexPage'
+import TestPage from './routes/TestPage'
+import IndexPage from './routes/GalleryPage'
 
 function RouterConfig({ history }) {
   return (
@@ -11,8 +11,8 @@ function RouterConfig({ history }) {
       <Route path="/" component={HomePage}/>
       <Route path="/homepage" component={HomePage}/>
       <Route path="/sign-up" component={SignUpPage}/>
-      <Route path="/gallery" component={GalleryPage}/>
-      <Route path="/test" component={IndexPage}/>
+      <Route path="/gallery" component={IndexPage}/>
+      <Route path="/test" component={TestPage}/>
     </Router>
   );
 }

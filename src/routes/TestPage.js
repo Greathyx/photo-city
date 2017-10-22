@@ -1,6 +1,10 @@
+/**
+ * Created by hyx on 2017/10/10.
+ */
+
 import React from 'react';
 import {connect} from 'dva';
-import styles from './css/IndexPage.css';
+import styles from './css/TestPage.css';
 import {Layout, Header, Navigation, Content, Textfield} from 'react-mdl';
 import {Link} from 'dva/router';
 import {img} from 'antd';
@@ -23,7 +27,7 @@ const material_styles = {
   }
 };
 
-class IndexPage extends React.Component {
+class GalleryPage extends React.Component {
 
   getChildContext() {
     return {muiTheme: getMuiTheme(baseTheme)};
@@ -63,6 +67,7 @@ class IndexPage extends React.Component {
             <Link to="/sign-up"><span className={styles.link}>Join</span></Link>
           </Navigation>
         </Header>
+
         <Content>
           <div style={{height: 1200}}>hello</div>
         </Content>
@@ -80,8 +85,8 @@ class IndexPage extends React.Component {
   }
 }
 
-IndexPage.childContextTypes = {
+GalleryPage.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default IndexPage;
+export default GalleryPage;
