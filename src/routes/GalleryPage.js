@@ -97,6 +97,8 @@ class IndexPage extends React.Component {
             </a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li><Link to="/homepage" className={styles.link}>Home</Link></li>
+              <li><Link to="/gallery/photo" className={styles.link}>Photos</Link></li>
+              <li><Link to="/gallery/video" className={styles.link}>Videos</Link></li>
               <li><Link onClick={this.handleOpenLoginForm} className={styles.link}>Login</Link></li>
               <li><Link to="/sign-up" className={styles.link}>Join</Link></li>
             </ul>
@@ -107,6 +109,8 @@ class IndexPage extends React.Component {
               onRequestChange={(openDrawer) => this.setState({openDrawer})}
             >
               <Link to="/homepage"><MenuItem>Home</MenuItem></Link>
+              <Link to="/gallery/photo"><MenuItem>Photos</MenuItem></Link>
+              <Link to="/gallery/video"><MenuItem>Videos</MenuItem></Link>
               <MenuItem onClick={this.handleOpenLoginForm}>Login</MenuItem>
               <Link to="/sign-up"><MenuItem>Join</MenuItem></Link>
             </Drawer>
@@ -114,12 +118,13 @@ class IndexPage extends React.Component {
         </nav>
 
         <div className="row">
-          <div className="col s12 m12 l12" style={{height:1200, marginTop:64}}>
-            <div className="col s12 m6 l3"><p>s12 m6 l3</p></div>
-            <div className="col s12 m6 l3"><p>s12 m6 l3</p></div>
-            <div className="col s12 m6 l3"><p>s12 m6 l3</p></div>
-            <div className="col s12 m6 l3"><p>s12 m6 l3</p></div>
-          </div>
+          {/*<div className="col s12 m12 l12" style={{height:1200, marginTop:64}}>*/}
+            {/*<div className="col s12 m6 l3"><p>s12 m6 l3</p></div>*/}
+            {/*<div className="col s12 m6 l3"><p>s12 m6 l3</p></div>*/}
+            {/*<div className="col s12 m6 l3"><p>s12 m6 l3</p></div>*/}
+            {/*<div className="col s12 m6 l3"><p>s12 m6 l3</p></div>*/}
+          {/*</div>*/}
+          {React.cloneElement(this.props.children)}
         </div>
 
         <Dialog
