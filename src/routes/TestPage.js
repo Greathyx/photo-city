@@ -10,21 +10,33 @@ import {img} from 'antd';
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-
-import imgLogo from '../assets/graphics/logo_small.png';
-import LoginForm from '../components/LoginForm';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import SwipeableViews from 'react-swipeable-views';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 const material_styles = {
-  flatButtonLabelStyle: {
-    color: '#245168',
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400,
   },
-  dialogStyle: {
-    width: 600
+  slide: {
+    padding: 10,
+  },
+  tab: {
+    color: '#000000',
+    backgroundColor: '#ffffff',
+    fontWeight: 400,
+  },
+  inkBarColor: {
+    backgroundColor: '#00897b',
   }
 };
+
 
 class GalleryPage extends React.Component {
 
@@ -32,30 +44,67 @@ class GalleryPage extends React.Component {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
 
-  state = {
-    open: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      slideIndex: 0,
+      open: false
+    };
+  }
+
+  handleChange = (value) => {
+    this.setState({
+      slideIndex: value,
+    });
   };
 
-  handleOpen = () => {
-    this.setState({open: true});
-  };
+  handleToggle = () => this.setState({open: !this.state.open});
 
-  handleClose = () => {
-    this.setState({open: false});
-  };
+  handleClose = () => this.setState({open: false});
 
   render() {
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onClick={this.handleClose}
-        labelStyle={material_styles.flatButtonLabelStyle}
-      />
-    ];
-
     return (
-      <div>
+      <div className="col s12 m12 l12">
+        <Tabs
+          onChange={this.handleChange}
+          value={this.state.slideIndex}
+          inkBarStyle={material_styles.inkBarColor}
+        >
+          <Tab label="New" value={0} buttonStyle={material_styles.tab} />
+          <Tab label="Discover" value={1} buttonStyle={material_styles.tab} />
+          <Tab label="Tab Three" value={2} buttonStyle={material_styles.tab} />
+        </Tabs>
+        <SwipeableViews
+          index={this.state.slideIndex}
+          onChangeIndex={this.handleChange}
+        >
+          <div>
+            <h2 style={material_styles.headline}>Tabs with slide effect</h2>
+            Swipe to see the next slide.<br />
+          </div>
+          <div style={material_styles.slide}>
+            slide n°2
+          </div>
+          <div style={material_styles.slide}>
+            slide n°3
+          </div>
+        </SwipeableViews>
+
+        <div>
+          <RaisedButton
+            label="Open Drawer"
+            onClick={this.handleToggle}
+          />
+          <Drawer
+            docked={false}
+            width={200}
+            open={this.state.open}
+            onRequestChange={(open) => this.setState({open})}
+          >
+            <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
+            <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
+          </Drawer>
+        </div>
 
       </div>
     );

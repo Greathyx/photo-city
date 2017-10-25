@@ -11,6 +11,12 @@ import FlatButton from 'material-ui/FlatButton';
 import DehazeIcon from 'material-ui/svg-icons/image/dehaze';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import Home from 'material-ui/svg-icons/action/home';
+import Photo from 'material-ui/svg-icons/image/camera-alt';
+import Video from 'material-ui/svg-icons/image/movie-creation';
+import Login from 'material-ui/svg-icons/action/supervisor-account';
+import Join from 'material-ui/svg-icons/action/loyalty';
 
 import imgLogo from '../assets/graphics/logo_small.png';
 import LoginForm from '../components/LoginForm';
@@ -102,31 +108,26 @@ class GalleryPage extends React.Component {
               <li><Link onClick={this.handleOpenLoginForm} className={styles.link}>Login</Link></li>
               <li><Link to="/sign-up" className={styles.link}>Join</Link></li>
             </ul>
-            <Drawer
-              docked={false}
-              zDepth={10000000}
-              width={200}
-              open={this.state.openDrawer}
-              onRequestChange={(openDrawer) => this.setState({openDrawer})}
-            >
-              <Link to="/homepage"><MenuItem>Home</MenuItem></Link>
-              <Link to="/gallery/photo"><MenuItem>Photos</MenuItem></Link>
-              <Link to="/gallery/video"><MenuItem>Videos</MenuItem></Link>
-              <MenuItem onClick={this.handleOpenLoginForm}>Login</MenuItem>
-              <Link to="/sign-up"><MenuItem>Join</MenuItem></Link>
-            </Drawer>
           </div>
         </nav>
 
         <div className="row">
-          {/*<div className="col s12 m12 l12" style={{height:1200, marginTop:64}}>*/}
-            {/*<div className="col s12 m6 l3"><p>s12 m6 l3</p></div>*/}
-            {/*<div className="col s12 m6 l3"><p>s12 m6 l3</p></div>*/}
-            {/*<div className="col s12 m6 l3"><p>s12 m6 l3</p></div>*/}
-            {/*<div className="col s12 m6 l3"><p>s12 m6 l3</p></div>*/}
-          {/*</div>*/}
           {React.cloneElement(this.props.children)}
         </div>
+
+        <Drawer
+          docked={false}
+          width={180}
+          open={this.state.openDrawer}
+          onRequestChange={(openDrawer) => this.setState({openDrawer})}
+        >
+          <Link to="/homepage"><MenuItem leftIcon={<Home />}>Home</MenuItem></Link>
+          <Link to="/gallery/photo"><MenuItem leftIcon={<Photo />}>Photos</MenuItem></Link>
+          <Link to="/gallery/video"><MenuItem leftIcon={<Video />}>Videos</MenuItem></Link>
+          <Divider style={{marginLeft: 15}} />
+          <MenuItem onClick={this.handleOpenLoginForm} leftIcon={<Login />}>Login</MenuItem>
+          <Link to="/sign-up"><MenuItem leftIcon={<Join />}>Join</MenuItem></Link>
+        </Drawer>
 
         <Dialog
           actions={actions}
