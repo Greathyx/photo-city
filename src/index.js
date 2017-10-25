@@ -2,6 +2,7 @@ import dva from 'dva';
 // import 'react-mdl/extra/material.css';
 // import 'react-mdl/extra/material.js';
 // import 'semantic-ui-css/semantic.min.css';
+// import 'jquery/dist/jquery.min';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/css/materialize.css';
 import 'materialize-css/dist/js/materialize.min';

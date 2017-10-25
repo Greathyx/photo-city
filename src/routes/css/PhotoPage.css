@@ -1,4 +1,7 @@
 .mainPanel {
   margin-top: 64px;
-  height: 1200px;
+}
+
+.tabContent{
+  height: 800px;
 }

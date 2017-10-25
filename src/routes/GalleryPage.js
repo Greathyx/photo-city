@@ -26,7 +26,7 @@ const material_styles = {
 };
 
 
-class IndexPage extends React.Component {
+class GalleryPage extends React.Component {
 
   getChildContext() {
     return {muiTheme: getMuiTheme(baseTheme)};
@@ -104,6 +104,7 @@ class IndexPage extends React.Component {
             </ul>
             <Drawer
               docked={false}
+              zDepth={10000000}
               width={200}
               open={this.state.openDrawer}
               onRequestChange={(openDrawer) => this.setState({openDrawer})}
@@ -140,8 +141,8 @@ class IndexPage extends React.Component {
   }
 }
 
-IndexPage.childContextTypes = {
+GalleryPage.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default IndexPage;
+export default GalleryPage;

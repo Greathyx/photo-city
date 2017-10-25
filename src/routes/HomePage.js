@@ -73,7 +73,7 @@ class HomePage extends React.Component {
                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
               >
                 <Link to="/homepage"><MenuItem primaryText="Home"/></Link>
-                <Link to="/gallery"><MenuItem primaryText="Gallery"/></Link>
+                <Link to="/gallery/photo"><MenuItem primaryText="Gallery"/></Link>
                 <MenuItem primaryText="Login" onClick={this.handleOpen}/>
                 <Link to="/sign-up"><MenuItem primaryText="Join"/></Link>
               </IconMenu>
