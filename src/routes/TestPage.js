@@ -5,7 +5,6 @@
 import React from 'react';
 import {connect} from 'dva';
 import styles from './css/TestPage.css';
-import {Layout, Header, Navigation, Content, Textfield} from 'react-mdl';
 import {Link} from 'dva/router';
 import {img} from 'antd';
 
@@ -56,31 +55,9 @@ class GalleryPage extends React.Component {
     ];
 
     return (
-      <Layout fixedHeader>
-        <Header seamed
-                title={<span><img src={imgLogo} className={styles.logo}/><span
-                  className={styles.title}>Photo City</span></span>}
-                className={styles.header}>
-          <Navigation>
-            <Link to="/homepage"><span className={styles.link}>Home</span></Link>
-            <Link><span onClick={this.handleOpen} className={styles.link}>Login</span></Link>
-            <Link to="/sign-up"><span className={styles.link}>Join</span></Link>
-          </Navigation>
-        </Header>
+      <div>
 
-        <Content>
-          <div style={{height: 1200}}>hello</div>
-        </Content>
-
-        <Dialog
-          actions={actions}
-          modal={true}
-          open={this.state.open}
-          contentStyle={material_styles.dialogStyle}
-        >
-          <LoginForm/>
-        </Dialog>
-      </Layout>
+      </div>
     );
   }
 }

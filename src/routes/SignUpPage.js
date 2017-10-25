@@ -118,38 +118,54 @@ class SignUpPage extends React.Component {
               <div className={styles.title}>
                 Join
               </div>
-              <TextField
-                hintText="e.g. 123@gmail.com"
-                floatingLabelText="Email address"
-                fullWidth={true}
-                underlineStyle={material_styles.underlineStyle}
-                floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
-                underlineFocusStyle={material_styles.underlineFocusStyle}
-              /><br />
-              <TextField
-                hintText="only letters, numbers, and underscores"
-                floatingLabelText="Username"
-                fullWidth={true}
-                underlineStyle={material_styles.underlineStyle}
-                floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
-                underlineFocusStyle={material_styles.underlineFocusStyle}
-              /><br />
-              <TextField
-                hintText="min. 6 char"
-                floatingLabelText="Password"
-                type="password"
-                fullWidth={true}
-                underlineStyle={material_styles.underlineStyle}
-                floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
-                underlineFocusStyle={material_styles.underlineFocusStyle}
-              /><br />
+              {/*<TextField*/}
+                {/*hintText="e.g. 123@gmail.com"*/}
+                {/*floatingLabelText="Email address"*/}
+                {/*fullWidth={true}*/}
+                {/*underlineStyle={material_styles.underlineStyle}*/}
+                {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
+                {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
+              {/*/><br />*/}
+              {/*<TextField*/}
+                {/*hintText="only letters, numbers, and underscores"*/}
+                {/*floatingLabelText="Username"*/}
+                {/*fullWidth={true}*/}
+                {/*underlineStyle={material_styles.underlineStyle}*/}
+                {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
+                {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
+              {/*/><br />*/}
+              {/*<TextField*/}
+                {/*hintText="min. 6 char"*/}
+                {/*floatingLabelText="Password"*/}
+                {/*type="password"*/}
+                {/*fullWidth={true}*/}
+                {/*underlineStyle={material_styles.underlineStyle}*/}
+                {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
+                {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
+              {/*/><br />*/}
+
+              <div className="row">
+                <div className="input-field col s12">
+                  <input id="email" type="email" className="validate"/>
+                  <label htmlFor="email">Email</label>
+                </div>
+                <div className="input-field col s12">
+                  <input id="username" type="text" className="validate"/>
+                    <label htmlFor="username">Username</label>
+                </div>
+                <div className="input-field col s12">
+                  <input id="password" type="password" className="validate"/>
+                  <label htmlFor="password">Password</label>
+                </div>
+              </div>
+
               <FlatButton
                 label="Join"
                 fullWidth={true}
                 backgroundColor="#000000"
-                hoverColor="#245168"
+                hoverColor="#00897b"
                 labelStyle={material_styles.buttonColorStyle}
-                style={{marginTop: 20}}
+                // style={{marginTop: 20}}
               /><br />
               <div className={styles.terms}>
                 By joining, you agree to the <a className={styles.link} onClick={this.handleOpenTerms}>Terms</a> and <a
