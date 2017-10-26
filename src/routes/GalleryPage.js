@@ -19,9 +19,16 @@ import Photo from 'material-ui/svg-icons/image/camera-alt';
 import Video from 'material-ui/svg-icons/image/movie-creation';
 import Login from 'material-ui/svg-icons/action/supervisor-account';
 import Join from 'material-ui/svg-icons/action/loyalty';
-import RightIcon from 'material-ui/svg-icons/image/navigate-next';
+import ChevronRightIcon from 'material-ui-icons/ChevronRight';
+import Avatar from 'material-ui/Avatar';
+import {List, ListItem} from 'material-ui/List';
+import Favourite from 'material-ui/svg-icons/action/favorite-border';
+import Homepage from 'material-ui/svg-icons/content/send';
+import Following from 'material-ui/svg-icons/social/person';
+import Follower from 'material-ui/svg-icons/social/person-outline';
 
 import imgLogo from '../assets/graphics/logo_small.png';
+import imgPortrait from '../assets/graphics/portrait.jpg';
 import LoginForm from '../components/LoginForm';
 
 
@@ -153,6 +160,9 @@ class GalleryPage extends React.Component {
           {React.cloneElement(this.props.children)}
         </div>
 
+        {/**
+         小屏导航栏
+         */}
         <Drawer
           docked={false}
           width={180}
@@ -168,18 +178,73 @@ class GalleryPage extends React.Component {
           <Link to="/sign-up"><MenuItem leftIcon={<Join />}>Join</MenuItem></Link>
         </Drawer>
 
+        {/**
+         用户抽屉，用于管理个人信息
+         */}
         <Drawer
-          /*width={300}*/
-          className="col s6 m4 l3"
+          width={300}
+          /*className="col s6 m4 l3"*/
           openSecondary={true}
           open={this.state.openUserDrawer}
           onRequestChange={(openUserDrawer) => this.setState({openUserDrawer})}
           style={{zIndex: 101}}
         >
           <IconButton onClick={this.handleCloseUserDrawer}>
-            <RightIcon />
+            <ChevronRightIcon />
           </IconButton>
           <Divider/>
+
+          <GridList
+            cols={2}
+            style={{width: 260, height: 80, marginTop: 20,marginLeft: 20, marginBottom: 6}}
+          >
+            <Avatar src={imgPortrait} size={80}/>
+            <div style={{marginLeft: -32, marginTop: 8}}>
+              <p style={{fontSize: 20, wordBreak: 'break-all', lineHeight: 1, marginBottom: 12}}>Sherley Huang</p>
+              <p style={{fontSize: 13, wordBreak: 'break-all', lineHeight: 1}}>151250064@smail.nju.edu.cn</p>
+            </div>
+          </GridList>
+
+          <List>
+            <ListItem primaryText="Homepage" leftIcon={<Homepage />} />
+            <ListItem primaryText="Favourite" leftIcon={<Favourite />} />
+            <ListItem
+              primaryText="Following"
+              leftIcon={<Following />}
+              initiallyOpen={false}
+              primaryTogglesNestedList={true}
+              nestedItems={[
+                <ListItem
+                  key={1}
+                  primaryText="Gakki"
+                />,
+                <ListItem
+                  key={2}
+                  primaryText="Tom Holland"
+                />,
+              ]}
+            />
+            <ListItem
+              primaryText="Follower"
+              leftIcon={<Follower />}
+              initiallyOpen={false}
+              primaryTogglesNestedList={true}
+              nestedItems={[
+                <ListItem
+                  key={1}
+                  primaryText="Person1"
+                />,
+                <ListItem
+                  key={2}
+                  primaryText="Person2"
+                />,
+                <ListItem
+                  key={3}
+                  primaryText="Person3"
+                />,
+              ]}
+            />
+          </List>
         </Drawer>
 
         <Dialog

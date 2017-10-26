@@ -9,86 +9,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
-import GalleryGridList from '../components/ImageGridList';
-
-import pic1 from '../assets/testPics/1.jpg';
-import pic2 from '../assets/testPics/2.jpg';
-import pic3 from '../assets/testPics/3.jpg';
-import pic4 from '../assets/testPics/4.jpg';
-import pic5 from '../assets/testPics/5.jpg';
-import pic6 from '../assets/testPics/6.jpg';
-import pic7 from '../assets/testPics/7.jpg';
-import pic8 from '../assets/testPics/8.jpg';
-
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *     cols: 2,
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
-
-const tileData = [
-  {
-    img: pic1,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: pic2,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: pic3,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: pic4,
-    title: 'Image',
-    author: 'author',
-    cols: 2,
-  },
-  {
-    img: pic5,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: pic6,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    img: pic7,
-    title: 'Image',
-    author: 'author',
-    cols: 2,
-  },
-  {
-    img: pic8,
-    title: 'Image',
-    author: 'author',
-    cols: 2,
-  },
-];
+import NewPhotoGridList from '../components/NewPhotoGridList';
 
 
 const material_styles = {
@@ -152,7 +73,7 @@ class PhotoPage extends React.Component {
             style={{marginTop: 5}}
           >
             <div>
-              <GalleryGridList/>
+              <NewPhotoGridList />
             </div>
             <div style={material_styles.slide}>
               slide n°2
