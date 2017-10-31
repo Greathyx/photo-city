@@ -6,6 +6,7 @@ import TestPage from './routes/TestPage';
 import GalleryPage from './routes/GalleryPage'
 import PhotoPage from './routes/PhotoPage';
 import VideoPage from './routes/VideoPage';
+import UserPage from './routes/UserPage';
 
 function RouterConfig({history}) {
   return (
@@ -17,6 +18,7 @@ function RouterConfig({history}) {
         <IndexRoute components={PhotoPage}/>
         <Route path="/gallery/photo" component={PhotoPage}/>
         <Route path="/gallery/video" component={VideoPage}/>
+        <Route path="/gallery/userHome" component={UserPage}/>
       </Route>
       <Route path="/test" component={TestPage}/>
     </Router>

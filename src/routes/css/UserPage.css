@@ -1,0 +1,87 @@
+.mainPanel {
+  margin-top: 64px;
+}
+
+.buttonEdit {
+  display: inline;
+}
+
+@media screen and (min-width: 1200px) {
+  .gridlist {
+    width: 450px;
+  }
+
+  .info_wrapper {
+    margin-left: -80px;
+    margin-top: 2px;
+  }
+
+  .Username {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .Email {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .gridlist {
+    width: 400px;
+  }
+
+  .Username {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .info_wrapper {
+    margin-left: -70px;
+    margin-top: 8px;
+  }
+
+  .Email {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  .gridlist {
+    width: 400px;
+  }
+
+  .info_wrapper {
+    margin-left: -60px;
+    margin-top: 12px;
+  }
+
+  .Username {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+
+  .Email {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gridlist{
+    width: 260px;
+  }
+
+  .info_wrapper {
+    margin-left: -30px;
+    margin-top: 6px;
+  }
+
+  .Username {
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+
+  .Email {
+    font-size: 13px;
+  }
+}

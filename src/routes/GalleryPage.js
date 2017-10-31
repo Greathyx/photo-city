@@ -206,7 +206,9 @@ class GalleryPage extends React.Component {
           </GridList>
 
           <List>
-            <ListItem primaryText="Homepage" leftIcon={<Homepage />} />
+            <Link to="/gallery/userHome" onClick={this.handleCloseUserDrawer}>
+              <ListItem primaryText="Homepage" leftIcon={<Homepage />} />
+            </Link>
             <ListItem primaryText="Favourite" leftIcon={<Favourite />} />
             <ListItem
               primaryText="Following"
