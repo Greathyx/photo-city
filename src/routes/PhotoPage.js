@@ -9,7 +9,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
-import NewPhotoGridList from '../components/NewPhotoGridList';
+import NewPhotoGridList from '../components/PhotoGridList';
 
 
 const material_styles = {
@@ -63,9 +63,9 @@ class PhotoPage extends React.Component {
             value={this.state.slideIndex}
             inkBarStyle={material_styles.inkBarColor}
           >
-            <Tab label="New" value={0} buttonStyle={material_styles.tab} />
-            <Tab label="Discover" value={1} buttonStyle={material_styles.tab} />
-            <Tab label="Tab Three" value={2} buttonStyle={material_styles.tab} />
+            <Tab label="New" value={0} buttonStyle={material_styles.tab}/>
+            <Tab label="Discover" value={1} buttonStyle={material_styles.tab}/>
+            <Tab label="Tab Three" value={2} buttonStyle={material_styles.tab}/>
           </Tabs>
           <SwipeableViews
             index={this.state.slideIndex}
@@ -73,7 +73,7 @@ class PhotoPage extends React.Component {
             style={{marginTop: 5}}
           >
             <div>
-              <NewPhotoGridList />
+              <NewPhotoGridList/>
             </div>
             <div style={material_styles.slide}>
               slide n°2

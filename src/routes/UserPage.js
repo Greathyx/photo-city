@@ -14,7 +14,7 @@ import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 
 import imgPortrait from '../assets/graphics/portrait.jpg';
-import NewPhotoGridList from '../components/NewPhotoGridList';
+import NewPhotoGridList from '../components/PhotoGridList';
 
 
 const material_styles = {
@@ -64,9 +64,10 @@ class UserPage extends React.Component {
             <p className={styles.Username} style={{wordBreak: 'break-all', lineHeight: 1}}>Sherley
               Huang</p>
             <div>
-              <p className={styles.Email} style={{wordBreak: 'break-all', lineHeight: 1, display: 'inline'}}>151250064@smail.nju.edu.cn</p>
+              <p className={styles.Email} style={{wordBreak: 'break-all', lineHeight: 1, display: 'inline'}}>
+                151250064@smail.nju.edu.cn</p>
               <IconButton tooltip="Edit" touch={true} tooltipPosition="bottom-right">
-                <EditIcon />
+                <EditIcon/>
               </IconButton>
             </div>
           </div>
@@ -90,7 +91,7 @@ class UserPage extends React.Component {
             style={{marginTop: 5}}
           >
             <div>
-              <NewPhotoGridList />
+              <NewPhotoGridList/>
             </div>
             <div style={material_styles.slide}>
               slide n°2

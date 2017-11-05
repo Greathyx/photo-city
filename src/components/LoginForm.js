@@ -89,7 +89,7 @@ class LoginForm extends React.Component {
           hoverColor="#00897b"
           labelStyle={material_styles.buttonColorStyle}
           style={{marginTop: 20}}
-        /><br />
+        /><br/>
         <div className={styles.join}>
           Don't have an account? <Link to="/sign-up"><span className={styles.link}>Join</span></Link>
         </div>

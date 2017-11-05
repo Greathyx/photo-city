@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'dva';
 import styles from './css/GalleryPage.css';
 import {Link} from 'dva/router';
 import {img} from 'antd';
@@ -37,7 +36,8 @@ const material_styles = {
     color: '#245168',
   },
   dialogStyle: {
-    width: 600
+    width: 600,
+    maxWidth: 'none',
   },
   navLabelStyle: {
     fontWeight: 400
@@ -139,7 +139,7 @@ class GalleryPage extends React.Component {
                 <FlatButton label="Login" labelStyle={material_styles.navLabelStyle}/>
               </Link>
               {/*<Link to="/sign-up">*/}
-                {/*<FlatButton label="Join" labelStyle={material_styles.navLabelStyle}/>*/}
+              {/*<FlatButton label="Join" labelStyle={material_styles.navLabelStyle}/>*/}
               {/*</Link>*/}
               <Link onClick={this.handleToggleUserDrawer}>
                 <FlatButton label="User" labelStyle={material_styles.navLabelStyle}/>
@@ -147,11 +147,11 @@ class GalleryPage extends React.Component {
             </GridList>
 
             {/*<ul id="nav-mobile" className="right hide-on-med-and-down">*/}
-              {/*<li><Link to="/homepage" className={styles.link}>Home</Link></li>*/}
-              {/*<li><Link to="/gallery/photo" className={styles.link}>Photos</Link></li>*/}
-              {/*<li><Link to="/gallery/video" className={styles.link}>Videos</Link></li>*/}
-              {/*<li><Link onClick={this.handleOpenLoginForm} className={styles.link}>Login</Link></li>*/}
-              {/*<li><Link to="/sign-up" className={styles.link}>Join</Link></li>*/}
+            {/*<li><Link to="/homepage" className={styles.link}>Home</Link></li>*/}
+            {/*<li><Link to="/gallery/photo" className={styles.link}>Photos</Link></li>*/}
+            {/*<li><Link to="/gallery/video" className={styles.link}>Videos</Link></li>*/}
+            {/*<li><Link onClick={this.handleOpenLoginForm} className={styles.link}>Login</Link></li>*/}
+            {/*<li><Link to="/sign-up" className={styles.link}>Join</Link></li>*/}
             {/*</ul>*/}
           </div>
         </nav>
@@ -170,12 +170,12 @@ class GalleryPage extends React.Component {
           onRequestChange={(openDrawer) => this.setState({openDrawer})}
           style={{zIndex: 102}}
         >
-          <Link to="/homepage"><MenuItem leftIcon={<Home />}>Home</MenuItem></Link>
-          <Link to="/gallery/photo"><MenuItem leftIcon={<Photo />}>Photos</MenuItem></Link>
-          <Link to="/gallery/video"><MenuItem leftIcon={<Video />}>Videos</MenuItem></Link>
+          <Link to="/homepage"><MenuItem leftIcon={<Home/>}>Home</MenuItem></Link>
+          <Link to="/gallery/photo"><MenuItem leftIcon={<Photo/>}>Photos</MenuItem></Link>
+          <Link to="/gallery/video"><MenuItem leftIcon={<Video/>}>Videos</MenuItem></Link>
           <Divider style={{marginLeft: 15}}/>
-          <MenuItem onClick={this.handleOpenLoginForm} leftIcon={<Login />}>Login</MenuItem>
-          <Link to="/sign-up"><MenuItem leftIcon={<Join />}>Join</MenuItem></Link>
+          <MenuItem onClick={this.handleOpenLoginForm} leftIcon={<Login/>}>Login</MenuItem>
+          <Link to="/sign-up"><MenuItem leftIcon={<Join/>}>Join</MenuItem></Link>
         </Drawer>
 
         {/**
@@ -190,13 +190,13 @@ class GalleryPage extends React.Component {
           style={{zIndex: 101}}
         >
           <IconButton onClick={this.handleCloseUserDrawer}>
-            <ChevronRightIcon />
+            <ChevronRightIcon/>
           </IconButton>
           <Divider/>
 
           <GridList
             cols={2}
-            style={{width: 260, height: 80, marginTop: 20,marginLeft: 20, marginBottom: 6}}
+            style={{width: 260, height: 80, marginTop: 20, marginLeft: 20, marginBottom: 6}}
           >
             <Avatar src={imgPortrait} size={80}/>
             <div style={{marginLeft: -32, marginTop: 8}}>
@@ -207,12 +207,12 @@ class GalleryPage extends React.Component {
 
           <List>
             <Link to="/gallery/userHome" onClick={this.handleCloseUserDrawer}>
-              <ListItem primaryText="Homepage" leftIcon={<Homepage />} />
+              <ListItem primaryText="Homepage" leftIcon={<Homepage/>}/>
             </Link>
-            <ListItem primaryText="Favourite" leftIcon={<Favourite />} />
+            <ListItem primaryText="Favourite" leftIcon={<Favourite/>}/>
             <ListItem
               primaryText="Following"
-              leftIcon={<Following />}
+              leftIcon={<Following/>}
               initiallyOpen={false}
               primaryTogglesNestedList={true}
               nestedItems={[
@@ -228,7 +228,7 @@ class GalleryPage extends React.Component {
             />
             <ListItem
               primaryText="Follower"
-              leftIcon={<Follower />}
+              leftIcon={<Follower/>}
               initiallyOpen={false}
               primaryTogglesNestedList={true}
               nestedItems={[

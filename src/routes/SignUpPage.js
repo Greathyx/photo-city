@@ -11,10 +11,8 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import Paper from 'material-ui/Paper';
-import {Layout, img} from 'antd';
+import {img} from 'antd';
 
-
-const {Content} = Layout;
 
 const material_styles = {
   hintStyle: {
@@ -99,266 +97,260 @@ class SignUpPage extends React.Component {
     ];
 
     return (
-      <Layout>
-        <Content className={styles.mainContent} style={{height: window_height}}>
-          <Paper zDepth={1} className={styles.paper}
-                 style={{
-                   marginLeft: (window_width - paper_width) / 2,
-                   marginTop: (window_height - paper_height) / 2
-                 }}>
-            <div className={styles.sign_up_form}
-                 style={{
-                   marginLeft: (paper_width - register_form_width) / 2,
-                   paddingTop: (paper_height - register_form_height) / 2
-                 }}>
+      <div className={"col s12 m12 l12 valign-wrapper " + styles.mainContent}>
+        <Paper zDepth={1} className={styles.paper}>
+          <div className={styles.sign_up_form}
+               style={{
+                 marginLeft: (paper_width - register_form_width) / 2,
+                 paddingTop: (paper_height - register_form_height) / 2
+               }}>
 
-              <div className={styles.logo_div}>
-                <img src={imgLogo} className={styles.img_logo}/>
-              </div>
-              <div className={styles.title}>
-                Join
-              </div>
-              {/*<TextField*/}
-                {/*hintText="e.g. 123@gmail.com"*/}
-                {/*floatingLabelText="Email address"*/}
-                {/*fullWidth={true}*/}
-                {/*underlineStyle={material_styles.underlineStyle}*/}
-                {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
-                {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
-              {/*/><br />*/}
-              {/*<TextField*/}
-                {/*hintText="only letters, numbers, and underscores"*/}
-                {/*floatingLabelText="Username"*/}
-                {/*fullWidth={true}*/}
-                {/*underlineStyle={material_styles.underlineStyle}*/}
-                {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
-                {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
-              {/*/><br />*/}
-              {/*<TextField*/}
-                {/*hintText="min. 6 char"*/}
-                {/*floatingLabelText="Password"*/}
-                {/*type="password"*/}
-                {/*fullWidth={true}*/}
-                {/*underlineStyle={material_styles.underlineStyle}*/}
-                {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
-                {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
-              {/*/><br />*/}
+            <div className={styles.logo_div}>
+              <img src={imgLogo} className={styles.img_logo}/>
+            </div>
+            <div className={styles.title}>
+              Join
+            </div>
+            {/*<TextField*/}
+            {/*hintText="e.g. 123@gmail.com"*/}
+            {/*floatingLabelText="Email address"*/}
+            {/*fullWidth={true}*/}
+            {/*underlineStyle={material_styles.underlineStyle}*/}
+            {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
+            {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
+            {/*/><br />*/}
+            {/*<TextField*/}
+            {/*hintText="only letters, numbers, and underscores"*/}
+            {/*floatingLabelText="Username"*/}
+            {/*fullWidth={true}*/}
+            {/*underlineStyle={material_styles.underlineStyle}*/}
+            {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
+            {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
+            {/*/><br />*/}
+            {/*<TextField*/}
+            {/*hintText="min. 6 char"*/}
+            {/*floatingLabelText="Password"*/}
+            {/*type="password"*/}
+            {/*fullWidth={true}*/}
+            {/*underlineStyle={material_styles.underlineStyle}*/}
+            {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
+            {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
+            {/*/><br />*/}
 
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="email" type="email" className="validate"/>
-                  <label htmlFor="email">Email</label>
-                </div>
-                <div className="input-field col s12">
-                  <input id="username" type="text" className="validate"/>
-                    <label htmlFor="username">Username</label>
-                </div>
-                <div className="input-field col s12">
-                  <input id="password" type="password" className="validate"/>
-                  <label htmlFor="password">Password</label>
-                </div>
+            <div className="row">
+              <div className="input-field col s12">
+                <input id="email" type="email" className="validate"/>
+                <label htmlFor="email">Email</label>
               </div>
-
-              <FlatButton
-                label="Join"
-                fullWidth={true}
-                backgroundColor="#000000"
-                hoverColor="#00897b"
-                labelStyle={material_styles.buttonColorStyle}
-                // style={{marginTop: 20}}
-              /><br />
-              <div className={styles.terms}>
-                By joining, you agree to the <a className={styles.link} onClick={this.handleOpenTerms}>Terms</a> and <a
-                className={styles.link} onClick={this.handleOpenPrivacyPolicy}>Privacy
-                Policy</a>.
+              <div className="input-field col s12">
+                <input id="username" type="text" className="validate"/>
+                <label htmlFor="username">Username</label>
+              </div>
+              <div className="input-field col s12">
+                <input id="password" type="password" className="validate"/>
+                <label htmlFor="password">Password</label>
               </div>
             </div>
-          </Paper>
-          <Dialog
-            title="Terms"
-            actions={actions_term}
-            modal={false}
-            open={this.state.openTerms}
-            onRequestClose={this.handleCloseTerms}
-            autoScrollBodyContent={true}
-          >
-            <div>
-              <br/>
-              Photo City is a photo discovery platform for free to use, high-definition photos. We operate the Photo
-              City website at PhotoCity.com (the “Site”) and all related websites, software, mobile apps, and other
-              services that we provide (together, the “Service”) with the goal of celebrating and enabling contributors
-              and fostering creativity in our community. Your use of the Service, and our provision of the Service to
-              you, constitutes an agreement by you and Photo City to be bound by the terms and conditions in these Terms
-              of Service.
-              <br/><br/>
 
-              PLEASE READ THESE TERMS OF SERVICE CAREFULLY. BY REGISTERING FOR OR OTHERWISE USING THE SERVICE, YOU ARE
-              TELLING US THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS OF SERVICE, INCLUDING OUR
-              PRIVACY POLICY (TOGETHER, THESE “TERMS”). If you don’t agree with anything we propose in these Terms,
-              please don’t (and you don’t have our permission to) use any part of the Service.
-              <br/><br/>
-
-              THIS PART IS REALLY IMPORTANT: These Terms require that if we get into a dispute with you relating to the
-              Service (or vice versa), the dispute will be resolved by BINDING ARBITRATION. This means that YOU AGREE TO
-              GIVE UP YOUR RIGHT TO GO TO COURT TO SUE US (OR BE SUED BY US) UNDER THIS CONTRACT (except for some
-              disputes that can be taken to small claims court). Our disputes will be determined by a NEUTRAL ARBITRATOR
-              and NOT A JUDGE OR JURY and you cannot start or join a class action lawsuit. Have a very careful read
-              through Section 18 for the actual details regarding our agreement to arbitrate, which we’ve tried to make
-              fair to our users.
+            <FlatButton
+              label="Join"
+              fullWidth={true}
+              backgroundColor="#000000"
+              hoverColor="#00897b"
+              labelStyle={material_styles.buttonColorStyle}
+              // style={{marginTop: 20}}
+            /><br/>
+            <div className={styles.terms}>
+              By joining, you agree to the <a className={styles.link} onClick={this.handleOpenTerms}>Terms</a> and <a
+              className={styles.link} onClick={this.handleOpenPrivacyPolicy}>Privacy
+              Policy</a>.
             </div>
-          </Dialog>
+          </div>
+        </Paper>
+        <Dialog
+          title="Terms"
+          actions={actions_term}
+          modal={false}
+          open={this.state.openTerms}
+          onRequestClose={this.handleCloseTerms}
+          autoScrollBodyContent={true}
+        >
+          <div>
+            <br/>
+            Photo City is a photo discovery platform for free to use, high-definition photos. We operate the Photo
+            City website at PhotoCity.com (the “Site”) and all related websites, software, mobile apps, and other
+            services that we provide (together, the “Service”) with the goal of celebrating and enabling contributors
+            and fostering creativity in our community. Your use of the Service, and our provision of the Service to
+            you, constitutes an agreement by you and Photo City to be bound by the terms and conditions in these Terms
+            of Service.
+            <br/><br/>
 
-          <Dialog
-            title="Privacy Policy"
-            actions={actions_privacyPolicy}
-            modal={false}
-            open={this.state.openPrivacyPolicy}
-            onRequestClose={this.handleClosePrivacyPolicy}
-            autoScrollBodyContent={true}
-          >
-            <div>
-              <br/>
-              At Photo City, we recognize the need to protect the privacy of the personal
-              information we collect or you provide to us when you access and use our website (PhotoCity.com) (the
-              “Website”).
-              <br/><br/>
+            PLEASE READ THESE TERMS OF SERVICE CAREFULLY. BY REGISTERING FOR OR OTHERWISE USING THE SERVICE, YOU ARE
+            TELLING US THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS OF SERVICE, INCLUDING OUR
+            PRIVACY POLICY (TOGETHER, THESE “TERMS”). If you don’t agree with anything we propose in these Terms,
+            please don’t (and you don’t have our permission to) use any part of the Service.
+            <br/><br/>
 
-              Therefore, we have adopted this privacy policy (the “Privacy Policy”), which sets forth, among other
-              things, the type of information that will be collected, the purpose and use of the collected information,
-              and your rights with regard to the collected information. By accessing the Website, you are consenting to
-              the collection and the use of your information by Company, but only to the extent described herein. Should
-              you wish to revoke your consent, you may do so in accordance with the provisions of Section 4 below.
-              <br/><br/>
+            THIS PART IS REALLY IMPORTANT: These Terms require that if we get into a dispute with you relating to the
+            Service (or vice versa), the dispute will be resolved by BINDING ARBITRATION. This means that YOU AGREE TO
+            GIVE UP YOUR RIGHT TO GO TO COURT TO SUE US (OR BE SUED BY US) UNDER THIS CONTRACT (except for some
+            disputes that can be taken to small claims court). Our disputes will be determined by a NEUTRAL ARBITRATOR
+            and NOT A JUDGE OR JURY and you cannot start or join a class action lawsuit. Have a very careful read
+            through Section 18 for the actual details regarding our agreement to arbitrate, which we’ve tried to make
+            fair to our users.
+          </div>
+        </Dialog>
 
-              1. Protection of Your Information<br/>
-              We are accountable for the information in our custody. Therefore, when we collect or use your information,
-              we will utilize commercially reasonable safeguards to ensure its protection. It should be noted that no
-              security procedure is currently 100% effective. Should any breach of your Personal Information occur, we
-              will inform you as soon as reasonably possible, as required by applicable law.
-              <br/><br/>
+        <Dialog
+          title="Privacy Policy"
+          actions={actions_privacyPolicy}
+          modal={false}
+          open={this.state.openPrivacyPolicy}
+          onRequestClose={this.handleClosePrivacyPolicy}
+          autoScrollBodyContent={true}
+        >
+          <div>
+            <br/>
+            At Photo City, we recognize the need to protect the privacy of the personal
+            information we collect or you provide to us when you access and use our website (PhotoCity.com) (the
+            “Website”).
+            <br/><br/>
 
-              2. Type and Purpose of Collection<br/>
-              We collect information at various points in the Website to facilitate its use by our customers.<br/>
-              Specifically, two types of information are collected:
-              <br/><br/>
+            Therefore, we have adopted this privacy policy (the “Privacy Policy”), which sets forth, among other
+            things, the type of information that will be collected, the purpose and use of the collected information,
+            and your rights with regard to the collected information. By accessing the Website, you are consenting to
+            the collection and the use of your information by Company, but only to the extent described herein. Should
+            you wish to revoke your consent, you may do so in accordance with the provisions of Section 4 below.
+            <br/><br/>
 
-              Non-Personal Information: Upon accessing the Website, certain non-personal information will be
-              automatically collected without your knowledge or consent, such as your IP address and the referring
-              website (“Non-Personal Information”). We use Non-Personal Information to examine our traffic and to view
-              how our customers use the Website. This type of information will not allow you to be personally
-              identified. For example, we use “cookies”, which contains only certain statistical information. You can
-              instruct your computer to inform you whenever a cookie is being sent, or you can disallow cookies through
-              your web browser. If you do choose to disallow cookies, your experience on the Website may be diminished,
-              or your ability to choose some of the options on the Website may be limited.
-              <br/><br/>
+            1. Protection of Your Information<br/>
+            We are accountable for the information in our custody. Therefore, when we collect or use your information,
+            we will utilize commercially reasonable safeguards to ensure its protection. It should be noted that no
+            security procedure is currently 100% effective. Should any breach of your Personal Information occur, we
+            will inform you as soon as reasonably possible, as required by applicable law.
+            <br/><br/>
 
-              Identifying Personal Information: To utilize some portions of the Website or some of the services provided
-              therein, you may be required to first provide personal information that will allow you to be identified
-              (“Personal Information”). This type of information will not be collected without your consent. The
-              purposes of the collection of Personal Information are the following:
-              <br/><br/>
+            2. Type and Purpose of Collection<br/>
+            We collect information at various points in the Website to facilitate its use by our customers.<br/>
+            Specifically, two types of information are collected:
+            <br/><br/>
 
-              i. To establish a relationship with you;
-              <br/><br/>
+            Non-Personal Information: Upon accessing the Website, certain non-personal information will be
+            automatically collected without your knowledge or consent, such as your IP address and the referring
+            website (“Non-Personal Information”). We use Non-Personal Information to examine our traffic and to view
+            how our customers use the Website. This type of information will not allow you to be personally
+            identified. For example, we use “cookies”, which contains only certain statistical information. You can
+            instruct your computer to inform you whenever a cookie is being sent, or you can disallow cookies through
+            your web browser. If you do choose to disallow cookies, your experience on the Website may be diminished,
+            or your ability to choose some of the options on the Website may be limited.
+            <br/><br/>
 
-              ii. To facilitate your service through our Website;
-              <br/><br/>
+            Identifying Personal Information: To utilize some portions of the Website or some of the services provided
+            therein, you may be required to first provide personal information that will allow you to be identified
+            (“Personal Information”). This type of information will not be collected without your consent. The
+            purposes of the collection of Personal Information are the following:
+            <br/><br/>
 
-              iii. To facilitate your service with our affiliated service providers;
-              <br/><br/>
+            i. To establish a relationship with you;
+            <br/><br/>
 
-              iv. To allow you to post a picture on the Website, and to identify you as having posted a picture on the
-              Website;
-              <br/><br/>
+            ii. To facilitate your service through our Website;
+            <br/><br/>
 
-              v. To anticipate and resolve problems with your service;
-              <br/><br/>
+            iii. To facilitate your service with our affiliated service providers;
+            <br/><br/>
 
-              vi. To understand your needs and desires vis-à-vis the Website;
-              <br/><br/>
+            iv. To allow you to post a picture on the Website, and to identify you as having posted a picture on the
+            Website;
+            <br/><br/>
 
-              vii. To update you on changes to our services or products, including new promotions.
-              <br/><br/>
+            v. To anticipate and resolve problems with your service;
+            <br/><br/>
 
-              We expressly acknowledge that we will not use your Personal Information for any other purposes without
-              your consent. Further, we will only collect Personal Information to the extent necessary for the
-              abovementioned purposes. The Personal Information we collect will vary depending on how you are using the
-              Website, but may include, without limitation, your address, phone number, email address and credit card
-              information.
-              <br/><br/>
+            vi. To understand your needs and desires vis-à-vis the Website;
+            <br/><br/>
 
-              3. Right to Examine Information<br/>
-              You have the right to examine any of your Personal Information that we collect. Should you wish to examine
-              such information, please send us a written request to support@unsplash.com. We reserve the right to charge
-              you a reasonable administrative fee to access your information, as permitted by applicable law. In certain
-              cases we may not be able to provide you with access to all of your Personal Information (ex: if the
-              information also pertains to the Personal Information of another user).
-              <br/><br/>
+            vii. To update you on changes to our services or products, including new promotions.
+            <br/><br/>
 
-              4. Withdrawal of Consent<br/>
-              You may withdraw your consent to the collection of Personal Information at any time by sending a written
-              request to support@unsplash.com. Upon receiving notice that you have revoked your consent, we will stop
-              using your Personal Information within a reasonable time, which will vary depending on what information we
-              have collected and for what purpose. Please note that we will send you an email confirmation upon receipt
-              of your request. Therefore, if you do not receive a confirmation email, please contact us again with your
-              request. If you do choose to withdraw such consent, your experience on the Website may be diminished, or
-              your ability to choose some of the options on the Website or the services provided therein may be limited.
-              <br/><br/>
+            We expressly acknowledge that we will not use your Personal Information for any other purposes without
+            your consent. Further, we will only collect Personal Information to the extent necessary for the
+            abovementioned purposes. The Personal Information we collect will vary depending on how you are using the
+            Website, but may include, without limitation, your address, phone number, email address and credit card
+            information.
+            <br/><br/>
 
-              5. Sharing Information<br/>
-              We will not sell, rent or disclose to outside parties the information we collect, save and except that we
-              may share the collected information with other parties as follows:
-              <br/><br/>
+            3. Right to Examine Information<br/>
+            You have the right to examine any of your Personal Information that we collect. Should you wish to examine
+            such information, please send us a written request to support@unsplash.com. We reserve the right to charge
+            you a reasonable administrative fee to access your information, as permitted by applicable law. In certain
+            cases we may not be able to provide you with access to all of your Personal Information (ex: if the
+            information also pertains to the Personal Information of another user).
+            <br/><br/>
 
-              A. Affiliated Service Providers: We have agreements with various affiliated service providers to
-              facilitate
-              the functioning of the Website, with whom we may share the information we have collected. For example, we
-              may share your credit card information with the credit card service provider to process your purchase. All
-              administrative service providers that we use are required to have the same level of privacy protection as
-              we have, and therefore we expect that your information will be handled with the same level of care that we
-              employ.
-              <br/><br/>
+            4. Withdrawal of Consent<br/>
+            You may withdraw your consent to the collection of Personal Information at any time by sending a written
+            request to support@unsplash.com. Upon receiving notice that you have revoked your consent, we will stop
+            using your Personal Information within a reasonable time, which will vary depending on what information we
+            have collected and for what purpose. Please note that we will send you an email confirmation upon receipt
+            of your request. Therefore, if you do not receive a confirmation email, please contact us again with your
+            request. If you do choose to withdraw such consent, your experience on the Website may be diminished, or
+            your ability to choose some of the options on the Website or the services provided therein may be limited.
+            <br/><br/>
 
-              B. Where required by law: We may share the collected information where required by law, specifically in
-              response to a demand from government authorities where such demand meets the legal requirements.
-              <br/><br/>
+            5. Sharing Information<br/>
+            We will not sell, rent or disclose to outside parties the information we collect, save and except that we
+            may share the collected information with other parties as follows:
+            <br/><br/>
 
-              C. Statistical Analysis: We may share Non-Personal Information and aggregated information with third
-              parties
-              for advertising or marketing purposes. No Personal Information will be shared in this manner.
-              <br/><br/>
+            A. Affiliated Service Providers: We have agreements with various affiliated service providers to
+            facilitate
+            the functioning of the Website, with whom we may share the information we have collected. For example, we
+            may share your credit card information with the credit card service provider to process your purchase. All
+            administrative service providers that we use are required to have the same level of privacy protection as
+            we have, and therefore we expect that your information will be handled with the same level of care that we
+            employ.
+            <br/><br/>
 
-              D. Transactions: In connection with, or during negotiations of, any merger, sale of company assets,
-              financing
-              or acquisition, or in any other situation where collected information may be disclosed or transferred as
-              one of our business assets.
-              <br/><br/>
+            B. Where required by law: We may share the collected information where required by law, specifically in
+            response to a demand from government authorities where such demand meets the legal requirements.
+            <br/><br/>
 
-              6. External Links<br/>
-              The Website contains links and references to other websites. We are not responsible for the collection,
-              use and disclosure of information, or the privacy practices of such websites, and we expressly disclaim
-              any liability relating thereto.
-              <br/><br/>
+            C. Statistical Analysis: We may share Non-Personal Information and aggregated information with third
+            parties
+            for advertising or marketing purposes. No Personal Information will be shared in this manner.
+            <br/><br/>
 
-              7. International Transfer<br/>
-              Your information may be transferred to and maintained on computers located outside of your jurisdiction,
-              where privacy laws may not be as protective as your jurisdiction. Your consent to this Privacy Policy
-              represents your consent to any such transfer.
-              <br/><br/>
+            D. Transactions: In connection with, or during negotiations of, any merger, sale of company assets,
+            financing
+            or acquisition, or in any other situation where collected information may be disclosed or transferred as
+            one of our business assets.
+            <br/><br/>
 
-              8. Terms of Use<br/>
-              This Privacy Policy is incorporated into and forms part of the Terms of Use, which outlines the terms and
-              conditions you agree to when accessing and using the Website, and which can be found at unsplash.com/terms
-              <br/><br/>
+            6. External Links<br/>
+            The Website contains links and references to other websites. We are not responsible for the collection,
+            use and disclosure of information, or the privacy practices of such websites, and we expressly disclaim
+            any liability relating thereto.
+            <br/><br/>
 
-              9. Persons Under 18<br/>
-              The Website is not marketed toward persons under the age of 18. If Company discovers that it has
-              inadvertently collected Personal Information about individuals under the age 18, it will promptly delete
-              such information.
-            </div>
-          </Dialog>
-        </Content>
-      </Layout>
+            7. International Transfer<br/>
+            Your information may be transferred to and maintained on computers located outside of your jurisdiction,
+            where privacy laws may not be as protective as your jurisdiction. Your consent to this Privacy Policy
+            represents your consent to any such transfer.
+            <br/><br/>
+
+            8. Terms of Use<br/>
+            This Privacy Policy is incorporated into and forms part of the Terms of Use, which outlines the terms and
+            conditions you agree to when accessing and using the Website, and which can be found at unsplash.com/terms
+            <br/><br/>
+
+            9. Persons Under 18<br/>
+            The Website is not marketed toward persons under the age of 18. If Company discovers that it has
+            inadvertently collected Personal Information about individuals under the age 18, it will promptly delete
+            such information.
+          </div>
+        </Dialog>
+      </div>
     );
   }
 }

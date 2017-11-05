@@ -1,9 +1,11 @@
-.mainPanel {
-  margin-top: 64px;
+.info_wrapper {
+  text-align: left;
 }
 
-.buttonEdit {
-  display: inline;
+.tags_wrapper {
+  text-align: left;
+  width: 100%;
+  margin-top: 20px;
 }
 
 @media screen and (min-width: 1200px) {
@@ -12,16 +14,20 @@
   }
 
   .info_wrapper {
-    margin-left: -80px;
-    margin-top: 2px;
+    margin-left: -120px;
+    margin-top: 15px;
   }
 
   .Username {
-    font-size: 40px;
+    font-size: 28px;
     margin-bottom: 10px;
   }
 
   .Email {
+    font-size: 14px;
+  }
+
+  .tags {
     font-size: 18px;
   }
 }
@@ -31,18 +37,22 @@
     width: 400px;
   }
 
+  .info_wrapper {
+    margin-left: -90px;
+    margin-top: 15px;
+  }
+
   .Username {
-    font-size: 32px;
+    font-size: 26px;
     margin-bottom: 10px;
   }
 
-  .info_wrapper {
-    margin-left: -70px;
-    margin-top: 8px;
+  .Email {
+    font-size: 13px;
   }
 
-  .Email {
-    font-size: 16px;
+  .tags {
+    font-size: 18px;
   }
 }
 
@@ -52,36 +62,44 @@
   }
 
   .info_wrapper {
-    margin-left: -60px;
-    margin-top: 12px;
+    margin-left: -100px;
+    margin-top: 16px;
   }
 
   .Username {
-    font-size: 28px;
-    margin-bottom: 6px;
+    font-size: 24px;
+    margin-bottom: 10px;
   }
 
   .Email {
-    font-size: 14px;
+    font-size: 12px;
+  }
+
+  .tags {
+    font-size: 17px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .gridlist {
-    width: 260px;
+    width: 240px;
   }
 
   .info_wrapper {
     margin-left: -30px;
-    margin-top: 6px;
+    margin-top: 15px;
   }
 
   .Username {
-    font-size: 24px;
-    margin-bottom: 18px;
+    font-size: 22px;
+    margin-bottom: 10px;
   }
 
   .Email {
     font-size: 13px;
+  }
+
+  .tags {
+    font-size: 16px;
   }
 }

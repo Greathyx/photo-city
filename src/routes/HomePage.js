@@ -20,6 +20,7 @@ import FlatButton from 'material-ui/FlatButton';
 import LoginForm from '../components/LoginForm';
 
 const {Content} = Layout;
+// 使用document.body.clientHeight可能会导致高度为0，改用document.documentElement.clientHeight
 const window_height = document.documentElement.clientHeight;
 
 const material_styles = {
@@ -27,7 +28,8 @@ const material_styles = {
     color: '#245168',
   },
   dialogStyle: {
-    width: 600
+    width: 600,
+    maxWidth: 'none',
   }
 };
 
@@ -61,14 +63,13 @@ class HomePage extends React.Component {
     ];
 
     return (
-      <Layout>
-        {/*使用document.body.clientHeight可能会导致高度为0，改用document.documentElement.clientHeight*/}
-        <Content className={styles.mainContent} style={{height: window_height}}>
+      <Layout style={{height: '100%'}}>
+        <Content className={styles.mainContent}>
           <div className={styles.root}>
             <GridList className={styles.gridList} cols={2}>
               <div className={styles.menuPic}/>
               <IconMenu
-                iconButtonElement={<IconButton><DehazeIcon /></IconButton>}
+                iconButtonElement={<IconButton><DehazeIcon/></IconButton>}
                 anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
               >
