@@ -6,7 +6,6 @@ import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {GridList} from 'material-ui/GridList';
-import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import Favourite from 'material-ui/svg-icons/action/favorite-border';
 
@@ -15,16 +14,19 @@ import styles from './css/PhotoForm.css';
 
 
 const material_styles = {
+
   largeIcon: {
-    width: 48,
-    height: 48,
+    width: 36,
+    height: 36,
   },
   large: {
-    width: 96,
-    height: 96,
-    padding: 24,
+    width: 72,
+    height: 72,
+    padding: 16,
   }
+
 };
+
 
 class PhotoForm extends React.Component {
 
@@ -39,20 +41,20 @@ class PhotoForm extends React.Component {
           <GridList
             cols={2}
             className={styles.gridlist}
-            style={{height: 80, marginLeft: 0, marginBottom: 20, textAlign: 'left'}}
+            style={{height: 80, marginLeft: 0, marginBottom: 15, textAlign: 'left'}}
           >
-            <Avatar src={imgPortrait} size={80}/>
+            <img src={imgPortrait} className="circle responsive-img" style={{maxWidth: 80}}/>
             <div className={styles.info_wrapper}>
               <p className={styles.Username} style={{wordBreak: 'break-all', lineHeight: 1}}>Sherley Huang</p>
               <p className={styles.Email} style={{wordBreak: 'break-all', lineHeight: 1}}>151250064@smail.nju.edu.cn</p>
             </div>
           </GridList>
 
-          <div style={{textAlign: 'right', float: 'right', marginTop: -100}}>
+          <div style={{textAlign: 'right', float: 'right', marginTop: -92, marginRight: -15}}>
             <IconButton
               tooltip="Like it"
               touch={true}
-              tooltipPosition="bottom-right"
+              tooltipPosition="bottom-left"
               iconStyle={material_styles.largeIcon}
               style={material_styles.large}
             >

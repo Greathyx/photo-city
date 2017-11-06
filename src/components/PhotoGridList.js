@@ -5,9 +5,13 @@
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import {GridList, GridListTile} from 'material-ui-next/GridList';
+import Dialog, {
+  DialogActions,
+  DialogContent,
+} from 'material-ui-next/Dialog';
+
 import PhotoForm from './PhotoForm';
 import styles from './css/PhotoGridList.css';
 // import tileData from './tileData';
@@ -20,22 +24,8 @@ import pic6 from '../assets/smallPics/6.jpg';
 import pic7 from '../assets/smallPics/7.jpg';
 import pic8 from '../assets/smallPics/8.jpg';
 
-// const styles = theme => ({
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//     justifyContent: 'space-around',
-//     overflow: 'hidden',
-//     background: theme.palette.background.paper,
-//   },
-//   gridList: {
-//     width: '100%',
-//     height: 'auto',
-//   },
-//   subheader: {
-//     width: '100%',
-//   },
-// });
+import pic11 from '../assets/bigPics/1.jpg';
+import pic21 from '../assets/bigPics/2.jpg';
 
 /**
  * The example data is structured as follows:
@@ -59,48 +49,56 @@ import pic8 from '../assets/smallPics/8.jpg';
 
 const tileData = [
   {
+    id: 1,
     img: pic1,
     title: 'Image',
     author: 'author',
     cols: 1,
   },
   {
+    id: 2,
     img: pic2,
     title: 'Image',
     author: 'author',
     cols: 1,
   },
   {
+    id: 3,
     img: pic3,
     title: 'Image',
     author: 'author',
     cols: 1,
   },
   {
+    id: 4,
     img: pic4,
     title: 'Image',
     author: 'author',
     cols: 2,
   },
   {
+    id: 5,
     img: pic5,
     title: 'Image',
     author: 'author',
     cols: 1,
   },
   {
+    id: 6,
     img: pic6,
     title: 'Image',
     author: 'author',
     cols: 1,
   },
   {
+    id: 7,
     img: pic7,
     title: 'Image',
     author: 'author',
     cols: 2,
   },
   {
+    id: 8,
     img: pic8,
     title: 'Image',
     author: 'author',
@@ -128,11 +126,10 @@ const material_styles = {
   },
   dialogStyle: {
     width: '80%',
-    height: 'auto',
     maxWidth: 'none',
-    maxHeight: 'none'
   }
 };
+
 
 class NewPhotoGridList extends React.Component {
 
@@ -147,10 +144,17 @@ class NewPhotoGridList extends React.Component {
 
   handleOpen = (event) => {
     // console.log(event.target);
-    this.setState({open: true, img_src: event.target.src});
+    this.setState({
+      open: true,
+      img_src: event.target.src
+    });
   };
 
   handleClose = () => {
+    this.setState({open: false});
+  };
+
+  handleRequestClose = () => {
     this.setState({open: false});
   };
 
@@ -175,6 +179,7 @@ class NewPhotoGridList extends React.Component {
               rows={tile.rows || 1}
             >
               <img
+                classID={tile.id}
                 src={tile.img}
                 alt={tile.title}
                 onClick={this.handleOpen}
@@ -185,16 +190,25 @@ class NewPhotoGridList extends React.Component {
         </GridList>
 
         <Dialog
-          actions={actions}
-          modal={true}
           open={this.state.open}
-          autoScrollBodyContent={true}
-          contentStyle={material_styles.dialogStyle}
+          onRequestClose={this.handleRequestClose}
+          maxWidth="md"
+          fullwidth
         >
-          <PhotoForm
-            img_src={this.state.img_src}
-            tags="Landscape, Nature"
-          />
+          <DialogContent>
+            <PhotoForm
+              img_src={pic21}
+              tags="Landscape, Nature"
+            />
+          </DialogContent>
+          <DialogActions>
+            <FlatButton
+              label="Close"
+              primary={true}
+              onClick={this.handleRequestClose}
+              labelStyle={material_styles.flatButtonLabelStyle}
+            />
+          </DialogActions>
         </Dialog>
       </div>
     );

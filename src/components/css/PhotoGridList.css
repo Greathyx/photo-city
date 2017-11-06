@@ -1,4 +1,16 @@
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 1; /*初始状态 透明度为0*/
+  }
+  100% {
+    opacity: 0.8; /*结尾状态 透明度为0.8*/
+  }
+}
+
 .img:hover {
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.8;
+  -webkit-animation-name: fadeIn; /*动画名称*/
+  -webkit-animation-duration: 0.5s; /*动画持续时间*/
+  -webkit-animation-delay: 0s; /*延迟时间*/
 }
