@@ -10,7 +10,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import {img} from 'antd';
 
 
 const material_styles = {
@@ -48,7 +47,10 @@ class LoginForm extends React.Component {
     return (
       <div className={styles.login_form}>
         <div className={styles.logo_div}>
-          <img src={imgLogo} className={styles.img_logo}/>
+          <img
+            src={imgLogo}
+            className="responsive-img"
+            style={{maxWidth: 176, maxHeight: 95, marginLeft: 3}}/>
         </div>
         <div className={styles.title}>
           Login

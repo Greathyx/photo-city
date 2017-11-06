@@ -11,10 +11,8 @@ import Dialog, {
   DialogActions,
   DialogContent,
 } from 'material-ui-next/Dialog';
-
 import PhotoForm from './PhotoForm';
 import styles from './css/PhotoGridList.css';
-// import tileData from './tileData';
 import pic1 from '../assets/smallPics/1.jpg';
 import pic2 from '../assets/smallPics/2.jpg';
 import pic3 from '../assets/smallPics/3.jpg';
@@ -118,15 +116,8 @@ const material_styles = {
     width: '100%',
     height: 'auto',
   },
-  subheader: {
-    width: '100%',
-  },
   flatButtonLabelStyle: {
     color: '#245168',
-  },
-  dialogStyle: {
-    width: '80%',
-    maxWidth: 'none',
   }
 };
 
@@ -150,28 +141,14 @@ class NewPhotoGridList extends React.Component {
     });
   };
 
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
   handleRequestClose = () => {
     this.setState({open: false});
   };
 
   render() {
-
-    const actions = [
-      <FlatButton
-        label="Close"
-        primary={true}
-        onClick={this.handleClose}
-        labelStyle={material_styles.flatButtonLabelStyle}
-      />
-    ];
-
     return (
-      <div className={material_styles.root}>
-        <GridList cellHeight={300} className={material_styles.gridList} cols={3}>
+      <div style={material_styles.root}>
+        <GridList cellHeight={300} style={material_styles.gridList} cols={3}>
           {tileData.map(tile => (
             <GridListTile
               key={tile.img}

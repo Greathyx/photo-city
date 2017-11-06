@@ -10,6 +10,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import NewPhotoGridList from '../components/PhotoGridList';
+import TagsGridList from '../components/TagsGridList';
 
 
 const material_styles = {
@@ -76,7 +77,7 @@ class PhotoPage extends React.Component {
               <NewPhotoGridList/>
             </div>
             <div style={material_styles.slide}>
-              slide n°2
+              <TagsGridList/>
             </div>
             <div style={material_styles.slide}>
               slide n°3
