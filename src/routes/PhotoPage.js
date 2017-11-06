@@ -11,6 +11,8 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import NewPhotoGridList from '../components/PhotoGridList';
 import TagsGridList from '../components/TagsGridList';
+import Classification from '../components/ClassificationPanel';
+import tileData from '../utils/imgLoader';
 
 
 const material_styles = {
@@ -78,6 +80,26 @@ class PhotoPage extends React.Component {
             </div>
             <div style={material_styles.slide}>
               <TagsGridList/>
+              <Classification
+                head="Animal"
+                subhead="Download diverse photos of animals with various appearances, habitats and emotions."
+                tileData={tileData.classification_animal_tileData}
+              />
+              <Classification
+                head="Business"
+                subhead="Download free business photos of real people getting ready for work in real life. No cheesy or stocky business pictures here."
+                tileData={tileData.classification_business_tileData}
+              />
+              <Classification
+                head="Dog"
+                subhead="Find different kinds of lovely dogs here and hope they can heal your heart."
+                tileData={tileData.classification_dog_tileData}
+              />
+              <Classification
+                head="Technology"
+                subhead="Browse these technology images featuring workspaces fill with gadgets, MacBooks, iPhones, and cameras."
+                tileData={tileData.classification_technology_tileData}
+              />
             </div>
             <div style={material_styles.slide}>
               slide n°3

@@ -256,9 +256,6 @@ class GalleryPage extends React.Component {
 
         <Dialog
           open={this.state.openLoginForm}
-          onRequestClose={this.handleCloseLoginForm}
-          maxWidth="md"
-          fullwidth
         >
           <DialogContent>
             <LoginForm/>
