@@ -5,7 +5,12 @@ import {img} from 'antd';
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Dialog from 'material-ui/Dialog';
+// import Dialog from 'material-ui/Dialog';
+import Dialog, {
+  DialogActions,
+  DialogContent,
+} from 'material-ui-next/Dialog';
+
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import {GridList} from 'material-ui/GridList';
@@ -123,7 +128,7 @@ class GalleryPage extends React.Component {
             <GridList
               id="nav-mobile"
               className="right hide-on-med-and-down"
-              cols={5}
+              cols={4}
               style={{height: 64, marginRight: 20}}
             >
               <Link to="/homepage">
@@ -132,9 +137,9 @@ class GalleryPage extends React.Component {
               <Link to="/gallery/photo">
                 <FlatButton label="Photos" labelStyle={material_styles.navLabelStyle}/>
               </Link>
-              <Link to="/gallery/video">
-                <FlatButton label="Videos" labelStyle={material_styles.navLabelStyle}/>
-              </Link>
+              {/*<Link to="/gallery/video">*/}
+              {/*<FlatButton label="Videos" labelStyle={material_styles.navLabelStyle}/>*/}
+              {/*</Link>*/}
               <Link onClick={this.handleOpenLoginForm}>
                 <FlatButton label="Login" labelStyle={material_styles.navLabelStyle}/>
               </Link>
@@ -250,12 +255,22 @@ class GalleryPage extends React.Component {
         </Drawer>
 
         <Dialog
-          actions={actions}
-          modal={true}
           open={this.state.openLoginForm}
-          contentStyle={material_styles.dialogStyle}
+          onRequestClose={this.handleCloseLoginForm}
+          maxWidth="md"
+          fullwidth
         >
-          <LoginForm/>
+          <DialogContent>
+            <LoginForm/>
+          </DialogContent>
+          <DialogActions>
+            <FlatButton
+              label="Cancel"
+              primary={true}
+              onClick={this.handleCloseLoginForm}
+              labelStyle={material_styles.flatButtonLabelStyle}
+            />
+          </DialogActions>
         </Dialog>
       </div>
     );
