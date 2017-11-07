@@ -38,7 +38,8 @@ import LoginForm from '../components/LoginForm';
 
 const material_styles = {
   flatButtonLabelStyle: {
-    color: '#245168',
+    // color: '#245168',
+    color: '#00897b',
   },
   dialogStyle: {
     width: 600,

@@ -17,6 +17,7 @@ const material_styles = {
     justifyContent: 'space-around',
   },
   gridList: {
+    width: '100%', // 解决classification面板下方出现横向滑动条的问题
     display: 'flex',
     flexWrap: 'nowrap',
     overflowX: 'auto',

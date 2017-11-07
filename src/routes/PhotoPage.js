@@ -68,7 +68,7 @@ class PhotoPage extends React.Component {
         },
         {
           head: 'Dog',
-          subhead: 'Find different kinds of lovely dogs here and hope they can heal your heart.',
+          subhead: 'Find different kinds of lovely dogs here and hope that they can heal your heart.',
           tileData: tileData.classification_dog_tileData
         }
       ]
@@ -97,12 +97,31 @@ class PhotoPage extends React.Component {
         },
         {
           head: 'Dog',
-          subhead: 'Find different kinds of lovely dogs here and hope they can heal your heart.',
+          subhead: 'Find different kinds of lovely dogs here and hope that they can heal your heart.',
           tileData: tileData.classification_dog_tileData
         }
       ]
     }
     else if (offset === 1) {
+      this.state.classification_list = [
+        {
+          head: 'Food',
+          subhead: 'Get hungry with these beautiful pictures of food. Download our most popular food images featuring coffee and pastries, fast food, vegan food, Thai food, and Mexican food.',
+          tileData: tileData.classification_food_tileData
+        },
+        {
+          head: 'Friends',
+          subhead: 'Enjoy and record a good time with your friends. As the saying goes, \"A life without a friend is a life without a sun.\"',
+          tileData: tileData.classification_friends_tileData
+        },
+        {
+          head: 'Happiness',
+          subhead: 'Celebrate happy days full of smiling and joy. Download these popular happy images perfect for birthdays, mother\'s day, valentines day, and anniversary.',
+          tileData: tileData.classification_happiness_tileData
+        },
+      ]
+    }
+    else if (offset === 2) {
       this.state.classification_list = [
         {
           head: 'Technology',
@@ -140,14 +159,16 @@ class PhotoPage extends React.Component {
               <NewPhotoGridList/>
             </div>
             <div style={material_styles.slide}>
+
               <TagsGridList/>
+
               {this.state.classification_list.map(classification_item => (
                 <Classification
                   head={classification_item.head}
                   subhead={classification_item.subhead}
                   tileData={classification_item.tileData}
                 />
-                ))}
+              ))}
 
               {/**
                分页

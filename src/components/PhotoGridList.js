@@ -117,7 +117,7 @@ const material_styles = {
     height: 'auto',
   },
   flatButtonLabelStyle: {
-    color: '#245168',
+    color: '#00897b',
   }
 };
 
