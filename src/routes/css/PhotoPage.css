@@ -5,3 +5,8 @@
 .tabContent{
   margin-top: 10px;
 }
+
+.pagination_wrapper {
+  width: 100%;
+  text-align: center;
+}

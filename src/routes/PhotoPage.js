@@ -9,6 +9,8 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatPagination from 'material-ui-flat-pagination';
 import NewPhotoGridList from '../components/PhotoGridList';
 import TagsGridList from '../components/TagsGridList';
 import Classification from '../components/ClassificationPanel';
@@ -32,6 +34,12 @@ const material_styles = {
   },
   inkBarColor: {
     backgroundColor: '#00897b',
+  },
+  currentPageLabelStyle: {
+    color: '#00897b'
+  },
+  otherPageLabelStyle: {
+    color: '#9E9E9E'
   }
 };
 
@@ -46,6 +54,24 @@ class PhotoPage extends React.Component {
     super(props);
     this.state = {
       slideIndex: 0,
+      offset: 0,
+      classification_list: [
+        {
+          head: 'Animal',
+          subhead: 'Download diverse photos of animals with various appearances, habitats and emotions.',
+          tileData: tileData.classification_animal_tileData
+        },
+        {
+          head: 'Business',
+          subhead: 'Download free business photos of real people getting ready for work in real life. No cheesy or stocky business pictures here.',
+          tileData: tileData.classification_business_tileData
+        },
+        {
+          head: 'Dog',
+          subhead: 'Find different kinds of lovely dogs here and hope they can heal your heart.',
+          tileData: tileData.classification_dog_tileData
+        }
+      ]
     };
   }
 
@@ -54,6 +80,41 @@ class PhotoPage extends React.Component {
       slideIndex: value,
     });
   };
+
+  handleClickPage(offset) {
+    this.setState({offset});
+    if (offset === 0) {
+      this.state.classification_list = [
+        {
+          head: 'Animal',
+          subhead: 'Download diverse photos of animals with various appearances, habitats and emotions.',
+          tileData: tileData.classification_animal_tileData
+        },
+        {
+          head: 'Business',
+          subhead: 'Download free business photos of real people getting ready for work in real life. No cheesy or stocky business pictures here.',
+          tileData: tileData.classification_business_tileData
+        },
+        {
+          head: 'Dog',
+          subhead: 'Find different kinds of lovely dogs here and hope they can heal your heart.',
+          tileData: tileData.classification_dog_tileData
+        }
+      ]
+    }
+    else if (offset === 1) {
+      this.state.classification_list = [
+        {
+          head: 'Technology',
+          subhead: 'Browse these technology images featuring workspaces fill with gadgets, MacBooks, iPhones, and cameras.',
+          tileData: tileData.classification_technology_tileData
+        },
+      ]
+    }
+    else {
+      console.log(offset)
+    }
+  }
 
   render() {
     return (
@@ -80,26 +141,30 @@ class PhotoPage extends React.Component {
             </div>
             <div style={material_styles.slide}>
               <TagsGridList/>
-              <Classification
-                head="Animal"
-                subhead="Download diverse photos of animals with various appearances, habitats and emotions."
-                tileData={tileData.classification_animal_tileData}
-              />
-              <Classification
-                head="Business"
-                subhead="Download free business photos of real people getting ready for work in real life. No cheesy or stocky business pictures here."
-                tileData={tileData.classification_business_tileData}
-              />
-              <Classification
-                head="Dog"
-                subhead="Find different kinds of lovely dogs here and hope they can heal your heart."
-                tileData={tileData.classification_dog_tileData}
-              />
-              <Classification
-                head="Technology"
-                subhead="Browse these technology images featuring workspaces fill with gadgets, MacBooks, iPhones, and cameras."
-                tileData={tileData.classification_technology_tileData}
-              />
+              {this.state.classification_list.map(classification_item => (
+                <Classification
+                  head={classification_item.head}
+                  subhead={classification_item.subhead}
+                  tileData={classification_item.tileData}
+                />
+                ))}
+
+              {/**
+               分页
+               */}
+              <div className={styles.pagination_wrapper}>
+                <MuiThemeProvider>
+                  <FlatPagination
+                    offset={this.state.offset}
+                    limit={1}
+                    total={4}
+                    onClick={(e, offset) => this.handleClickPage(offset)}
+                    style={{marginTop: 50}}
+                    currentPageLabelStyle={material_styles.currentPageLabelStyle}
+                    otherPageLabelStyle={material_styles.otherPageLabelStyle}
+                  />
+                </MuiThemeProvider>
+              </div>
             </div>
             <div style={material_styles.slide}>
               slide n°3
