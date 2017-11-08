@@ -1,5 +1,5 @@
 /**
- * Created by hyx on 2017/10/26.
+ * Created by hyx on 2017/11/05.
  */
 
 import React from 'react';
@@ -27,6 +27,11 @@ const material_styles = {
   },
   flatButtonLabelStyle: {
     color: '#00897b',
+  },
+  flatButtonLabelViewMoreStyle: {
+    color: '#9E9E9E',
+    fontSize: 24,
+    textDecoration: 'underline'
   }
 };
 
@@ -51,6 +56,10 @@ class ClassificationPanel extends React.Component {
 
   handleRequestClose = () => {
     this.setState({open: false});
+  };
+
+  handleViewMore() {
+
   };
 
   render() {
@@ -83,12 +92,24 @@ class ClassificationPanel extends React.Component {
               />
             </GridListTile>
           ))}
+          <GridListTile
+            key="view_more"
+            cols={3}
+          >
+            <FlatButton
+              label="View more >>"
+              primary={true}
+              onClick={this.handleViewMore}
+              labelStyle={material_styles.flatButtonLabelViewMoreStyle}
+              style={{width: '100%', height: '100%'}}
+            />
+          </GridListTile>
         </GridList>
 
         <Dialog
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
-          maxWidth="md"
+          maxWidth="lg"
           fullWidth
         >
           <DialogContent>

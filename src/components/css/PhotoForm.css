@@ -63,7 +63,7 @@
   }
 
   .info_wrapper {
-    margin-left: -100px;
+    margin-left: -110px;
     margin-top: 16px;
   }
 
@@ -79,6 +79,11 @@
   .tags {
     font-size: 17px;
   }
+
+  .avatar {
+    width: 70px;
+    margin-top: 8px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -87,7 +92,7 @@
   }
 
   .info_wrapper {
-    margin-left: -30px;
+    margin-left: -40px;
     margin-top: 15px;
   }
 
@@ -102,5 +107,10 @@
 
   .tags {
     font-size: 16px;
+  }
+
+  .avatar {
+    width: 65px;
+    margin-top: 14px;
   }
 }

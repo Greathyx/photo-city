@@ -43,7 +43,7 @@ class PhotoForm extends React.Component {
             className={styles.gridlist}
             style={{height: 80, marginLeft: 0, marginBottom: 15, textAlign: 'left'}}
           >
-            <img src={imgPortrait} className="circle responsive-img" style={{maxWidth: 80}}/>
+            <img src={imgPortrait} className={"circle responsive-img "+styles.avatar} style={{maxWidth: 80}}/>
             <div className={styles.info_wrapper}>
               <p className={styles.Username} style={{wordBreak: 'break-all', lineHeight: 1}}>Sherley Huang</p>
               <p className={styles.Email} style={{wordBreak: 'break-all', lineHeight: 1}}>151250064@smail.nju.edu.cn</p>

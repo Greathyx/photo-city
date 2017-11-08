@@ -1,7 +1,6 @@
 import animal_tag from '../assets/tagsPics/animal.jpg';
 import business_tag from '../assets/tagsPics/business.jpg';
-import technology_tag from '../assets/tagsPics/technology.jpg';
-import dog_tag from '../assets/tagsPics/dog.jpg';
+import cool_tag from '../assets/tagsPics/cool.jpg';
 import food_tag from '../assets/tagsPics/food.jpg';
 import friends_tag from '../assets/tagsPics/friends.jpg';
 import happiness_tag from '../assets/tagsPics/happiness.jpg';
@@ -9,8 +8,11 @@ import health_tag from '../assets/tagsPics/health.jpg';
 import house_tag from '../assets/tagsPics/house.jpg';
 import love_tag from '../assets/tagsPics/love.jpg';
 import nature_tag from '../assets/tagsPics/nature.jpg';
+import pet_tag from '../assets/tagsPics/pet.jpg';
+import portrait_tag from '../assets/tagsPics/portrait.jpg';
 import season_tag from '../assets/tagsPics/season.jpg';
 import sport_tag from '../assets/tagsPics/sport.jpg';
+import technology_tag from '../assets/tagsPics/technology.jpg';
 
 import imgAnimal1 from '../assets/classification/animal/animal1.jpg';
 import imgAnimal2 from '../assets/classification/animal/animal2.jpg';
@@ -72,8 +74,8 @@ const tag_tileData = [
     title: 'business'
   },
   {
-    img: dog_tag,
-    title: 'dog'
+    img: cool_tag,
+    title: 'cool'
   },
   {
     img: food_tag,
@@ -102,6 +104,14 @@ const tag_tileData = [
   {
     img: nature_tag,
     title: 'nature'
+  },
+  {
+    img: pet_tag,
+    title: 'pet'
+  },
+  {
+    img: portrait_tag,
+    title: 'portrait'
   },
   {
     img: season_tag,

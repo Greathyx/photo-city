@@ -81,9 +81,8 @@ class UserPage extends React.Component {
             inkBarStyle={material_styles.inkBarColor}
           >
             <Tab label="My Photos" value={0} buttonStyle={material_styles.tab}/>
-            <Tab label="My Videos" value={1} buttonStyle={material_styles.tab}/>
-            <Tab label="Favourite" value={2} buttonStyle={material_styles.tab}/>
-            <Tab label="Following" value={3} buttonStyle={material_styles.tab}/>
+            <Tab label="Favourite" value={1} buttonStyle={material_styles.tab}/>
+            <Tab label="Following" value={2} buttonStyle={material_styles.tab}/>
           </Tabs>
           <SwipeableViews
             index={this.state.slideIndex}
@@ -98,9 +97,6 @@ class UserPage extends React.Component {
             </div>
             <div style={material_styles.slide}>
               slide n°3
-            </div>
-            <div style={material_styles.slide}>
-              slide n°4
             </div>
           </SwipeableViews>
         </div>

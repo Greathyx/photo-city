@@ -14,6 +14,7 @@ import FlatPagination from 'material-ui-flat-pagination';
 import NewPhotoGridList from '../components/PhotoGridList';
 import TagsGridList from '../components/TagsGridList';
 import Classification from '../components/ClassificationPanel';
+import NewDynamicsPanel from '../components/NewDynamicsPanel';
 import tileData from '../utils/imgLoader';
 
 
@@ -25,11 +26,13 @@ const material_styles = {
     fontWeight: 400,
   },
   slide: {
+    width: '100%',
     paddingTop: 10,
   },
   tab: {
     color: '#000000',
     backgroundColor: '#ffffff',
+    width: '100%',
     fontWeight: 400,
   },
   inkBarColor: {
@@ -54,7 +57,8 @@ class PhotoPage extends React.Component {
     super(props);
     this.state = {
       slideIndex: 0,
-      offset: 0,
+      offset_new: 0,
+      offset_discover: 0,
       classification_list: [
         {
           head: 'Animal',
@@ -81,8 +85,14 @@ class PhotoPage extends React.Component {
     });
   };
 
-  handleClickPage(offset) {
-    this.setState({offset});
+  // 最新照片面板分页监听
+  handleClickPage_New(offset) {
+    this.setState({offset_new: offset});
+  }
+
+  // 发现照片面板分页监听
+  handleClickPage_Discover(offset) {
+    this.setState({offset_discover: offset});
     if (offset === 0) {
       this.state.classification_list = [
         {
@@ -138,7 +148,9 @@ class PhotoPage extends React.Component {
   render() {
     return (
       <div className={"col s12 m12 l12" + " " + styles.mainPanel} style={{paddingLeft: '4%', paddingRight: '4%'}}>
-        <PageHeader subhead="With a camera through all the world's every city in every corner of the photographer."/>
+        <PageHeader
+          subhead="With a camera through all the world's every city in every corner of the photographer."
+        />
 
         <div className="col s12 m12 l12">
           <Tabs
@@ -148,7 +160,7 @@ class PhotoPage extends React.Component {
           >
             <Tab label="New" value={0} buttonStyle={material_styles.tab}/>
             <Tab label="Discover" value={1} buttonStyle={material_styles.tab}/>
-            <Tab label="Tab Three" value={2} buttonStyle={material_styles.tab}/>
+            <Tab label="Moments" value={2} buttonStyle={material_styles.tab}/>
           </Tabs>
           <SwipeableViews
             index={this.state.slideIndex}
@@ -157,6 +169,22 @@ class PhotoPage extends React.Component {
           >
             <div>
               <NewPhotoGridList/>
+              {/**
+               分页
+               */}
+              <div className={styles.pagination_wrapper}>
+                <MuiThemeProvider>
+                  <FlatPagination
+                    offset={this.state.offset_new}
+                    limit={1}
+                    total={10}
+                    onClick={(e, offset) => this.handleClickPage_New(offset)}
+                    style={{marginTop: 50, marginBottom: 30}}
+                    currentPageLabelStyle={material_styles.currentPageLabelStyle}
+                    otherPageLabelStyle={material_styles.otherPageLabelStyle}
+                  />
+                </MuiThemeProvider>
+              </div>
             </div>
             <div style={material_styles.slide}>
 
@@ -176,11 +204,11 @@ class PhotoPage extends React.Component {
               <div className={styles.pagination_wrapper}>
                 <MuiThemeProvider>
                   <FlatPagination
-                    offset={this.state.offset}
+                    offset={this.state.offset_discover}
                     limit={1}
-                    total={4}
-                    onClick={(e, offset) => this.handleClickPage(offset)}
-                    style={{marginTop: 50}}
+                    total={5}
+                    onClick={(e, offset) => this.handleClickPage_Discover(offset)}
+                    style={{marginTop: 50, marginBottom: 30}}
                     currentPageLabelStyle={material_styles.currentPageLabelStyle}
                     otherPageLabelStyle={material_styles.otherPageLabelStyle}
                   />
@@ -188,7 +216,9 @@ class PhotoPage extends React.Component {
               </div>
             </div>
             <div style={material_styles.slide}>
-              slide n°3
+
+              <NewDynamicsPanel/>
+
             </div>
           </SwipeableViews>
         </div>

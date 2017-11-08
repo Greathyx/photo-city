@@ -1,16 +1,18 @@
 /**
- * Created by hyx on 2017/10/26.
+ * Created by hyx on 2017/11/07.
  */
 
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import FlatButton from 'material-ui/FlatButton';
+import styles from './css/NewDynamicsPanel.css';
+import imgPortrait from '../assets/graphics/portrait.jpg';
+import Grid from 'material-ui-next/Grid';
 import {GridList, GridListTile} from 'material-ui-next/GridList';
 import Dialog, {DialogActions, DialogContent} from 'material-ui-next/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 import PhotoForm from './PhotoForm';
 
-import styles from './css/PhotoGridList.css';
 import pic1 from '../assets/smallPics/1.jpg';
 import pic2 from '../assets/smallPics/2.jpg';
 import pic3 from '../assets/smallPics/3.jpg';
@@ -20,11 +22,6 @@ import pic6 from '../assets/smallPics/6.jpg';
 import pic7 from '../assets/smallPics/7.jpg';
 import pic8 from '../assets/smallPics/8.jpg';
 import pic9 from '../assets/smallPics/9.JPG';
-import pic10 from '../assets/smallPics/10.jpg';
-import pic11 from '../assets/smallPics/11.jpg';
-import pic12 from '../assets/smallPics/12.jpg';
-import pic13 from '../assets/smallPics/13.jpg';
-import pic14 from '../assets/smallPics/14.jpg';
 
 import bPic1 from '../assets/bigPics/1.jpg';
 import bPic2 from '../assets/bigPics/2.jpg';
@@ -35,11 +32,6 @@ import bPic6 from '../assets/bigPics/6.jpg';
 import bPic7 from '../assets/bigPics/7.jpg';
 import bPic8 from '../assets/bigPics/8.jpg';
 import bPic9 from '../assets/bigPics/9.JPG';
-import bPic10 from '../assets/bigPics/10.jpg';
-import bPic11 from '../assets/bigPics/11.jpg';
-import bPic12 from '../assets/bigPics/12.jpg';
-import bPic13 from '../assets/bigPics/13.jpg';
-import bPic14 from '../assets/bigPics/14.jpg';
 
 
 const tileData = [
@@ -73,7 +65,7 @@ const tileData = [
     bImg: bPic4,
     title: 'Image',
     author: 'author',
-    cols: 2,
+    cols: 1,
   },
   {
     id: 5,
@@ -97,7 +89,7 @@ const tileData = [
     bImg: bPic7,
     title: 'Image',
     author: 'author',
-    cols: 2,
+    cols: 1,
   },
   {
     id: 8,
@@ -105,7 +97,7 @@ const tileData = [
     bImg: bPic8,
     title: 'Image',
     author: 'author',
-    cols: 2,
+    cols: 1,
   },
   {
     id: 9,
@@ -114,50 +106,11 @@ const tileData = [
     title: 'Image',
     author: 'author',
     cols: 1,
-  },
-  {
-    id: 10,
-    img: pic10,
-    bImg: bPic10,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    id: 11,
-    img: pic11,
-    bImg: bPic11,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    id: 12,
-    img: pic12,
-    bImg: bPic12,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    id: 13,
-    img: pic13,
-    bImg: bPic13,
-    title: 'Image',
-    author: 'author',
-    cols: 1,
-  },
-  {
-    id: 14,
-    img: pic14,
-    bImg: bPic14,
-    title: 'Image',
-    author: 'author',
-    cols: 2,
   }
 ];
 
 const material_styles = {
+
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -165,17 +118,17 @@ const material_styles = {
     overflow: 'hidden',
     background: '#fff',
   },
-  gridList: {
+  gridStyle: {
     width: '100%',
-    height: 'auto',
+    marginLeft: 0,
   },
   flatButtonLabelStyle: {
     color: '#00897b',
   }
+
 };
 
-
-class NewPhotoGridList extends React.Component {
+class NewDynamicsPanel extends React.Component {
 
   getChildContext() {
     return {muiTheme: getMuiTheme(baseTheme)};
@@ -200,23 +153,29 @@ class NewPhotoGridList extends React.Component {
   render() {
     return (
       <div style={material_styles.root}>
-        <GridList cellHeight={300} style={material_styles.gridList} cols={3}>
-          {tileData.map(tile => (
-            <GridListTile
-              key={tile.img}
-              cols={tile.cols || 1}
-              rows={tile.rows || 1}
-            >
-              <img
-                classID={tile.id}
-                src={tile.img}
-                alt={tile.title}
-                onClick={(e, bImg) => this.handleOpen(tile.bImg)}
-                className={styles.img}
-              />
-            </GridListTile>
-          ))}
-        </GridList>
+        <Grid container spacing={24} style={material_styles.gridStyle}>
+          <Grid item xs={3} sm={2} md={1}>
+            <img src={imgPortrait} className="circle responsive-img" style={{maxWidth: 80}}/>
+          </Grid>
+          <Grid item xs={9} sm={10} md={11}>
+            <GridList cellHeight={200} style={material_styles.gridList} cols={4}>
+              {tileData.map(tile => (
+                <GridListTile
+                  key={tile.img}
+                  cols={tile.cols || 1}
+                >
+                  <img
+                    classID={tile.id}
+                    src={tile.img}
+                    alt={tile.title}
+                    onClick={(e, bImg) => this.handleOpen(tile.bImg)}
+                    className={styles.img}
+                  />
+                </GridListTile>
+              ))}
+            </GridList>
+          </Grid>
+        </Grid>
 
         <Dialog
           open={this.state.open}
@@ -240,12 +199,12 @@ class NewPhotoGridList extends React.Component {
           </DialogActions>
         </Dialog>
       </div>
-    );
+    )
   }
 }
 
-NewPhotoGridList.childContextTypes = {
+NewDynamicsPanel.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default NewPhotoGridList;
+export default NewDynamicsPanel;

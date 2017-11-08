@@ -105,14 +105,6 @@ class GalleryPage extends React.Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onClick={this.handleCloseLoginForm}
-        labelStyle={material_styles.flatButtonLabelStyle}
-      />
-    ];
 
     return (
       <div className="col s12 m12 l12 navbar-fixed">
@@ -120,7 +112,6 @@ class GalleryPage extends React.Component {
           <div className="nav-wrapper">
             <span className="brand-logo" style={{marginLeft: 20}}>
               <img src={imgLogo} className={styles.logo}/>
-              {/*<span className={styles.title}>Photo City</span>*/}
             </span>
             <a onClick={this.handleToggleDrawer} className="button-collapse">
               <DehazeIcon className={styles.menuIcon}/>
@@ -151,14 +142,6 @@ class GalleryPage extends React.Component {
                 <FlatButton label="User" labelStyle={material_styles.navLabelStyle}/>
               </Link>
             </GridList>
-
-            {/*<ul id="nav-mobile" className="right hide-on-med-and-down">*/}
-            {/*<li><Link to="/homepage" className={styles.link}>Home</Link></li>*/}
-            {/*<li><Link to="/gallery/photo" className={styles.link}>Photos</Link></li>*/}
-            {/*<li><Link to="/gallery/video" className={styles.link}>Videos</Link></li>*/}
-            {/*<li><Link onClick={this.handleOpenLoginForm} className={styles.link}>Login</Link></li>*/}
-            {/*<li><Link to="/sign-up" className={styles.link}>Join</Link></li>*/}
-            {/*</ul>*/}
           </div>
         </nav>
 
@@ -258,7 +241,10 @@ class GalleryPage extends React.Component {
         <Dialog
           open={this.state.openLoginForm}
         >
-          <DialogContent>
+          <DialogContent
+            maxWidth="sm"
+            fullWidth
+          >
             <LoginForm/>
           </DialogContent>
           <DialogActions>
