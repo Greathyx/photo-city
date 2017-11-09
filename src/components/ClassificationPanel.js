@@ -41,16 +41,55 @@ class ClassificationPanel extends React.Component {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
 
-  state = {
-    open: false,
-    img_src: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      img_src: "",
+      initial_cols: props.cols,
+      grid_cols: props.cols,
+      windowHeight: window.innerHeight,
+      windowWidth: window.innerWidth
+    };
+  }
 
-  handleOpen = (event) => {
-    // console.log(event.target);
+  // 实现gridList响应式布局
+  handleResize(e) {
+    this.setState({
+      windowHeight: window.innerHeight,
+      windowWidth: window.innerWidth
+    });
+    if (this.state.windowWidth < 600) {
+      this.setState({grid_cols: 1});
+    }
+    else {
+      this.setState({grid_cols: this.state.initial_cols});
+    }
+  }
+
+  // 根据屏幕宽度初始化grid_cols
+  componentWillMount() {
+    if (this.state.windowWidth < 600) {
+      this.setState({grid_cols: 1});
+    }
+    else {
+      this.setState({grid_cols: this.state.initial_cols});
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', ::this.handleResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', ::this.handleResize)
+  }
+
+  // 查看大图方法
+  handleOpen(bImg) {
     this.setState({
       open: true,
-      img_src: event.target.src
+      img_src: bImg
     });
   };
 
@@ -58,8 +97,9 @@ class ClassificationPanel extends React.Component {
     this.setState({open: false});
   };
 
+  // 查看更多图片方法
   handleViewMore() {
-
+    // todo
   };
 
   render() {
@@ -78,23 +118,27 @@ class ClassificationPanel extends React.Component {
           </div>
         </div>
 
-        <GridList cellHeight={200} style={material_styles.gridList} cols={12}>
+        <GridList
+          cellHeight={this.props.height ? this.props.height : 300}
+          style={material_styles.gridList}
+          cols={this.state.grid_cols}
+        >
           {this.props.tileData.map(tile => (
             <GridListTile
               key={tile.img}
-              cols={tile.cols}
+              cols={this.state.grid_cols === 1 ? 1 : tile.cols || 1}
             >
               <img
                 src={tile.img}
                 alt={tile.title}
-                onClick={this.handleOpen}
+                onClick={(e, bImg) => this.handleOpen(tile.bImg ? tile.bImg : tile.img)}
                 className={styles.img}
               />
             </GridListTile>
           ))}
           <GridListTile
             key="view_more"
-            cols={3}
+            cols={this.state.grid_cols === 1 ? 1 : 3}
           >
             <FlatButton
               label="View more >>"

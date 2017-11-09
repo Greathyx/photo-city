@@ -59,6 +59,7 @@ class PhotoPage extends React.Component {
       slideIndex: 0,
       offset_new: 0,
       offset_discover: 0,
+      newPhotoList: tileData.test1_tileData,
       classification_list: [
         {
           head: 'Animal',
@@ -168,7 +169,11 @@ class PhotoPage extends React.Component {
             style={{marginTop: 5}}
           >
             <div>
-              <NewPhotoGridList/>
+              <NewPhotoGridList
+                tileData={tileData.test1_tileData}
+                cols={3}
+                height={300}
+              />
               {/**
                分页
                */}
@@ -186,8 +191,8 @@ class PhotoPage extends React.Component {
                 </MuiThemeProvider>
               </div>
             </div>
-            <div style={material_styles.slide}>
 
+            <div>
               <TagsGridList/>
 
               {this.state.classification_list.map(classification_item => (
@@ -195,6 +200,8 @@ class PhotoPage extends React.Component {
                   head={classification_item.head}
                   subhead={classification_item.subhead}
                   tileData={classification_item.tileData}
+                  cols={12}
+                  height={200}
                 />
               ))}
 
@@ -215,11 +222,11 @@ class PhotoPage extends React.Component {
                 </MuiThemeProvider>
               </div>
             </div>
-            <div style={material_styles.slide}>
 
+            <div>
               <NewDynamicsPanel/>
-
             </div>
+
           </SwipeableViews>
         </div>
 

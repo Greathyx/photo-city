@@ -15,6 +15,7 @@ import EditIcon from 'material-ui/svg-icons/image/edit';
 
 import imgPortrait from '../assets/graphics/portrait.jpg';
 import NewPhotoGridList from '../components/PhotoGridList';
+import tileData from '../utils/imgLoader';
 
 
 const material_styles = {
@@ -90,7 +91,11 @@ class UserPage extends React.Component {
             style={{marginTop: 5}}
           >
             <div>
-              <NewPhotoGridList/>
+              <NewPhotoGridList
+                tileData={tileData.test1_tileData}
+                cols={3}
+                height={300}
+              />
             </div>
             <div style={material_styles.slide}>
               slide n°2
