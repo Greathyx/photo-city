@@ -6,6 +6,12 @@
   display: inline;
 }
 
+.pagination_wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+
 @media screen and (min-width: 1200px) {
   .gridlist {
     width: 450px;

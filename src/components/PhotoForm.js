@@ -3,11 +3,13 @@
  */
 
 import React from 'react';
+import { hashHistory } from 'react-router';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {GridList} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Favourite from 'material-ui/svg-icons/action/favorite-border';
+import FlatButton from 'material-ui/FlatButton';
 
 import imgPortrait from '../assets/graphics/portrait.jpg';
 import styles from './css/PhotoForm.css';
@@ -23,6 +25,9 @@ const material_styles = {
     width: 72,
     height: 72,
     padding: 16,
+  },
+  flatButtonLabelStyle: {
+    color: '#595959',
   }
 
 };
@@ -34,6 +39,12 @@ class PhotoForm extends React.Component {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
 
+  // 根据标签名字，跳转到分类标签界面
+  handleClickTag(tag_name) {
+    // todo
+    hashHistory.push("/gallery/tag="+tag_name);
+  }
+
   render() {
     return (
       <div className="center-align">
@@ -43,7 +54,7 @@ class PhotoForm extends React.Component {
             className={styles.gridlist}
             style={{height: 80, marginLeft: 0, marginBottom: 15, textAlign: 'left'}}
           >
-            <img src={imgPortrait} className={"circle responsive-img "+styles.avatar} style={{maxWidth: 80}}/>
+            <img src={imgPortrait} className={"circle responsive-img " + styles.avatar} style={{maxWidth: 80}}/>
             <div className={styles.info_wrapper}>
               <p className={styles.Username} style={{wordBreak: 'break-all', lineHeight: 1}}>Sherley Huang</p>
               <p className={styles.Email} style={{wordBreak: 'break-all', lineHeight: 1}}>151250064@smail.nju.edu.cn</p>
@@ -65,7 +76,16 @@ class PhotoForm extends React.Component {
 
         <img className="responsive-img" src={this.props.img_src}/>
         <div className={styles.tags_wrapper}>
-          <p className={"flow-text " + styles.tags}>Tags: {this.props.tags}</p>
+          <span className={"flow-text " + styles.tags}>Tags: </span>
+          {this.props.tags.map((tag, index) => (
+            <FlatButton
+              key={index}
+              label={tag}
+              primary={true}
+              onClick={(e, tag_name)=>this.handleClickTag(tag)}
+              labelStyle={material_styles.flatButtonLabelStyle}
+            />
+          ))}
         </div>
       </div>
     );

@@ -12,7 +12,7 @@ class PageHeader extends React.Component {
       <div className={styles.pageHeader}>
         <div className="row">
           <div className="col s12 m12 l12">
-            <span className={styles.head}>Photo City</span>
+            <span className={styles.head}>{this.props.head ? this.props.head : "Photo City"}</span>
           </div>
         </div>
         <div className="row">

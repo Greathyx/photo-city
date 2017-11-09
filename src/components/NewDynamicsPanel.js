@@ -6,7 +6,7 @@ import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import imgPortrait from '../assets/graphics/portrait.jpg';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import tileData from '../utils/imgLoader';
 import PhotoGrid from './PhotoGridList';
 
@@ -27,6 +27,18 @@ const material_styles = {
   cardMediaStyle: {
     paddingLeft: 16,
     paddingRight: 16,
+  },
+  cardTextStyle: {
+    marginTop: -18,
+    marginBottom: 8,
+    marginLeft: 2,
+    fontSize: 18
+  },
+  cardTitleStyle: {
+    color: '#757575',
+    fontSize: 16,
+    float: 'right',
+    marginRight: 2
   },
   gridStyle: {
     width: '100%',
@@ -55,6 +67,12 @@ class NewDynamicsPanel extends React.Component {
             titleStyle={{fontSize: 20}}
             subtitleStyle={{fontSize: 14}}
           />
+          <CardText style={material_styles.cardTextStyle}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          </CardText>
           <CardMedia style={material_styles.cardMediaStyle}>
             <PhotoGrid
               tileData={tileData.test2_tileData}
@@ -63,15 +81,9 @@ class NewDynamicsPanel extends React.Component {
             />
           </CardMedia>
           <CardTitle
-            title="2017/07/18"
-            subtitle="06:11"
+            title="2017/07/18 06:11"
+            titleStyle={material_styles.cardTitleStyle}
           />
-          <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-          </CardText>
         </Card>
       </div>
     )

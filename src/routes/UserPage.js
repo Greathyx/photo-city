@@ -12,6 +12,8 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatPagination from 'material-ui-flat-pagination';
 
 import imgPortrait from '../assets/graphics/portrait.jpg';
 import NewPhotoGridList from '../components/PhotoGridList';
@@ -29,6 +31,12 @@ const material_styles = {
   },
   inkBarColor: {
     backgroundColor: '#00897b',
+  },
+  currentPageLabelStyle: {
+    color: '#00897b'
+  },
+  otherPageLabelStyle: {
+    color: '#9E9E9E'
   }
 };
 
@@ -42,6 +50,7 @@ class UserPage extends React.Component {
     super(props);
     this.state = {
       slideIndex: 0,
+      offset_myPhoto: 0,
     };
   }
 
@@ -50,6 +59,11 @@ class UserPage extends React.Component {
       slideIndex: value,
     });
   };
+
+  // 最新照片面板分页监听
+  handleClickPage_MyPhoto(offset) {
+    this.setState({offset_myPhoto: offset});
+  }
 
   render() {
     return (
@@ -96,6 +110,23 @@ class UserPage extends React.Component {
                 cols={3}
                 height={300}
               />
+
+              {/**
+               分页
+               */}
+              <div className={styles.pagination_wrapper}>
+                <MuiThemeProvider>
+                  <FlatPagination
+                    offset={this.state.offset_myPhoto}
+                    limit={1}
+                    total={10}
+                    onClick={(e, offset) => this.handleClickPage_MyPhoto(offset)}
+                    style={{marginTop: 50, marginBottom: 30}}
+                    currentPageLabelStyle={material_styles.currentPageLabelStyle}
+                    otherPageLabelStyle={material_styles.otherPageLabelStyle}
+                  />
+                </MuiThemeProvider>
+              </div>
             </div>
             <div style={material_styles.slide}>
               slide n°2
@@ -105,7 +136,6 @@ class UserPage extends React.Component {
             </div>
           </SwipeableViews>
         </div>
-
       </div>
     );
   }

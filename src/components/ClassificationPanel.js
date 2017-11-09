@@ -48,6 +48,7 @@ class ClassificationPanel extends React.Component {
       img_src: "",
       initial_cols: props.cols,
       grid_cols: props.cols,
+      tags: [],
       windowHeight: window.innerHeight,
       windowWidth: window.innerWidth
     };
@@ -86,10 +87,12 @@ class ClassificationPanel extends React.Component {
   }
 
   // 查看大图方法
-  handleOpen(bImg) {
+  handleOpen(bImg, tags) {
+    let tags_list = tags.split(",");
     this.setState({
       open: true,
-      img_src: bImg
+      img_src: bImg,
+      tags: tags_list
     });
   };
 
@@ -131,7 +134,7 @@ class ClassificationPanel extends React.Component {
               <img
                 src={tile.img}
                 alt={tile.title}
-                onClick={(e, bImg) => this.handleOpen(tile.bImg ? tile.bImg : tile.img)}
+                onClick={(e, bImg, tags) => this.handleOpen(tile.bImg ? tile.bImg : tile.img, "Nature,Cool")}
                 className={styles.img}
               />
             </GridListTile>
@@ -159,7 +162,7 @@ class ClassificationPanel extends React.Component {
           <DialogContent>
             <PhotoForm
               img_src={this.state.img_src}
-              tags="Landscape, Nature"
+              tags={this.state.tags}
             />
           </DialogContent>
           <DialogActions>
