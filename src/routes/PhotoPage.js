@@ -72,9 +72,9 @@ class PhotoPage extends React.Component {
           tileData: tileData.classification_business_tileData
         },
         {
-          head: 'Dog',
-          subhead: 'Find different kinds of lovely dogs here and hope that they can heal your heart.',
-          tileData: tileData.classification_dog_tileData
+          head: 'Cool',
+          subhead: 'Find cool photos that help make an impact. These various cool images are simply fun, amazing, and unique. Many options of cool pictures for desktop and website background graphics available. Download any you like and use for free commercially or otherwise.',
+          tileData: tileData.classification_cool_tileData
         }
       ]
     };
@@ -107,9 +107,9 @@ class PhotoPage extends React.Component {
           tileData: tileData.classification_business_tileData
         },
         {
-          head: 'Dog',
-          subhead: 'Find different kinds of lovely dogs here and hope that they can heal your heart.',
-          tileData: tileData.classification_dog_tileData
+          head: 'Cool',
+          subhead: 'Find cool photos that help make an impact. These various cool images are simply fun, amazing, and unique. Many options of cool pictures for desktop and website background graphics available. Download any you like and use for free commercially or otherwise.',
+          tileData: tileData.classification_cool_tileData
         }
       ]
     }
@@ -135,14 +135,59 @@ class PhotoPage extends React.Component {
     else if (offset === 2) {
       this.state.classification_list = [
         {
+          head: 'Health',
+          subhead: 'Download these health photos, featuring dietary products, healthy food, and people exercising, lifting weights and stretching.',
+          tileData: tileData.classification_health_tileData
+        },
+        {
+          head: 'House',
+          subhead: 'Browse these house images featuring different styles of decorations, environment and neighbourhood.',
+          tileData: tileData.classification_house_tileData
+        },
+        {
+          head: 'love',
+          subhead: 'Download these free love images featuring heart objects and shapes, people kissing, holding hands and posing in wedding dresses and suits.',
+          tileData: tileData.classification_love_tileData
+        },
+      ]
+    }
+    else if (offset === 3) {
+      this.state.classification_list = [
+        {
+          head: 'Nature',
+          subhead: 'Get outside, get into nature and explore with these fantastic beaches, forest, mountain and wildlife images. Find your ideal nature pictures and download them for free!',
+          tileData: tileData.classification_nature_tileData
+        },
+        {
+          head: 'Pet',
+          subhead: 'Find different kinds of lovely pets here and hope that they can heal your heart.',
+          tileData: tileData.classification_pet_tileData
+        },
+        {
+          head: 'Portrait',
+          subhead: 'Find photos of all types of people here and hope you can make new friends.',
+          tileData: tileData.classification_portrait_tileData
+        }
+      ]
+    }
+    else {
+      this.state.classification_list = [
+        {
+          head: 'Season',
+          subhead: 'Enjoy beautiful photos with fantastic four seasons in a year.',
+          tileData: tileData.classification_season_tileData
+        },
+        {
+          head: 'Sport',
+          subhead: 'Download these sport pictures featuring basketball, volleyball, swimming and so on.',
+          tileData: tileData.classification_sport_tileData
+        },
+        {
           head: 'Technology',
           subhead: 'Browse these technology images featuring workspaces fill with gadgets, MacBooks, iPhones, and cameras.',
           tileData: tileData.classification_technology_tileData
         },
       ]
-    }
-    else {
-      console.log(offset)
     }
   }
 

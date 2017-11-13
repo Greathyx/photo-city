@@ -134,7 +134,7 @@ class ClassificationPanel extends React.Component {
               <img
                 src={tile.img}
                 alt={tile.title}
-                onClick={(e, bImg, tags) => this.handleOpen(tile.bImg ? tile.bImg : tile.img, "Nature,Cool")}
+                onClick={(e, bImg, tags) => this.handleOpen(tile.bImg ? tile.bImg : tile.img, tile.tags ? tile.tags: 'cool')}
                 className={styles.img}
               />
             </GridListTile>

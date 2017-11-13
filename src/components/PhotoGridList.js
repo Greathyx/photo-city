@@ -30,6 +30,13 @@ const material_styles = {
 };
 
 
+/**
+ *
+ * tileData: 要显示的图片数据，required
+ * cols：栅格的列数，required
+ * height：每行的高度，optional，默认值为300px
+ *
+ */
 class NewPhotoGridList extends React.Component {
 
   getChildContext() {
@@ -120,7 +127,7 @@ class NewPhotoGridList extends React.Component {
                 classID={tile.id}
                 src={tile.img}
                 alt={tile.title}
-                onClick={(e, bImg, tags) => this.handleOpen(tile.bImg ? tile.bImg : tile.img, "Nature,Cool")}
+                onClick={(e, bImg, tags) => this.handleOpen(tile.bImg ? tile.bImg : tile.img, tile.tags ? tile.tags: 'cool')}
                 className={styles.img}
               />
             </GridListTile>
