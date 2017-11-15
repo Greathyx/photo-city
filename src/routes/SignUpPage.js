@@ -3,14 +3,18 @@
  */
 
 import React from 'react';
+import {connect} from 'dva'
 import styles from './css/SignUpPage.css';
 import imgLogo from '../assets/graphics/logo.png';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import Paper from 'material-ui/Paper';
+import IconButton from 'material-ui/IconButton';
+import Visibility from 'material-ui-icons/Visibility';
+import VisibilityOff from 'material-ui-icons/VisibilityOff';
+import Snackbar from 'material-ui-next/Snackbar';
 import {img} from 'antd';
 
 
@@ -25,19 +29,18 @@ const material_styles = {
     borderColor: '#666666',
   },
   underlineFocusStyle: {
-    borderColor: '#245168',
+    // borderColor: '#245168',
+    borderColor: '#00897b',
   },
   floatingLabelStyle: {
     color: '#333333',
   },
   floatingLabelFocusStyle: {
-    color: '#245168',
+    // color: '#245168',
+    color: '#00897b',
   },
   buttonColorStyle: {
     color: '#ffffff',
-  },
-  flatButtonLabelStyle: {
-    color: '#245168',
   }
 };
 
@@ -57,7 +60,20 @@ class SignUpPage extends React.Component {
 
   state = {
     openTerms: false,
-    openPrivacyPolicy: false
+    openPrivacyPolicy: false,
+    showPassword: false,
+    openSnackBar: false,
+    hint: ''
+  };
+
+  // 隐藏密码
+  handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
+  // 显示密码
+  handleClickShowPassword = () => {
+    this.setState({showPassword: !this.state.showPassword});
   };
 
   handleOpenTerms = () => {
@@ -74,6 +90,62 @@ class SignUpPage extends React.Component {
 
   handleClosePrivacyPolicy = () => {
     this.setState({openPrivacyPolicy: false});
+  };
+
+  handleRequestCloseSnackBar = () => {
+    this.setState({openSnackBar: false});
+  };
+
+  // 注册按钮监听
+  handleRegister = () => {
+    let email = document.getElementById("email").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    const checkEmail = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;
+    if (!checkEmail.test(email)) {
+      if (email === '') {
+        this.setState({
+          openSnackBar: true,
+          hint: 'Please type in your email address.',
+        });
+      }
+      else {
+        this.setState({
+          openSnackBar: true,
+          hint: 'Please type in the right email address.',
+        });
+      }
+    }
+
+    else if (username === '') {
+      this.setState({
+        openSnackBar: true,
+        hint: 'Please type in your username.',
+      });
+    }
+
+    else if (password === '') {
+      this.setState({
+        openSnackBar: true,
+        hint: 'Please type in your password.',
+      });
+    }
+
+    else {
+      const param = {
+        username: username,
+        email: email,
+        password: password,
+      };
+
+      this.props.dispatch({
+        type: 'authentication/register',
+        payload: {
+          ...param,
+        },
+      });
+    }
   };
 
   render() {
@@ -96,6 +168,8 @@ class SignUpPage extends React.Component {
       />
     ];
 
+    const {openSnackBar, hint} = this.state;
+
     return (
       <div className={"col s12 m12 l12 valign-wrapper " + styles.mainContent}>
         <Paper zDepth={1} className={styles.paper}>
@@ -111,33 +185,8 @@ class SignUpPage extends React.Component {
             <div className={styles.title}>
               Join
             </div>
-            {/*<TextField*/}
-            {/*hintText="e.g. 123@gmail.com"*/}
-            {/*floatingLabelText="Email address"*/}
-            {/*fullWidth={true}*/}
-            {/*underlineStyle={material_styles.underlineStyle}*/}
-            {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
-            {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
-            {/*/><br />*/}
-            {/*<TextField*/}
-            {/*hintText="only letters, numbers, and underscores"*/}
-            {/*floatingLabelText="Username"*/}
-            {/*fullWidth={true}*/}
-            {/*underlineStyle={material_styles.underlineStyle}*/}
-            {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
-            {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
-            {/*/><br />*/}
-            {/*<TextField*/}
-            {/*hintText="min. 6 char"*/}
-            {/*floatingLabelText="Password"*/}
-            {/*type="password"*/}
-            {/*fullWidth={true}*/}
-            {/*underlineStyle={material_styles.underlineStyle}*/}
-            {/*floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}*/}
-            {/*underlineFocusStyle={material_styles.underlineFocusStyle}*/}
-            {/*/><br />*/}
 
-            <div className="row">
+            <div className="row" style={{textAlign: 'left'}}>
               <div className="input-field col s12">
                 <input id="email" type="email" className="validate"/>
                 <label htmlFor="email">Email</label>
@@ -147,8 +196,19 @@ class SignUpPage extends React.Component {
                 <label htmlFor="username">Username</label>
               </div>
               <div className="input-field col s12">
-                <input id="password" type="password" className="validate"/>
+                <input
+                  id="password"
+                  type={this.state.showPassword ? 'text' : 'password'}
+                  className="validate col s10"
+                />
                 <label htmlFor="password">Password</label>
+                <IconButton
+                  onClick={this.handleClickShowPassword}
+                  onMouseDown={this.handleMouseDownPassword}
+                  className="col s2"
+                >
+                  {this.state.showPassword ? <VisibilityOff/> : <Visibility/>}
+                </IconButton>
               </div>
             </div>
 
@@ -158,6 +218,7 @@ class SignUpPage extends React.Component {
               backgroundColor="#000000"
               hoverColor="#00897b"
               labelStyle={material_styles.buttonColorStyle}
+              onClick={this.handleRegister}
               // style={{marginTop: 20}}
             /><br/>
             <div className={styles.terms}>
@@ -167,6 +228,17 @@ class SignUpPage extends React.Component {
             </div>
           </div>
         </Paper>
+
+        <Snackbar
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+          open={openSnackBar}
+          onRequestClose={this.handleRequestCloseSnackBar}
+          SnackbarContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{hint}</span>}
+        />
+
         <Dialog
           title="Terms"
           actions={actions_term}
@@ -359,4 +431,10 @@ SignUpPage.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default SignUpPage;
+function mapStateToProps({authentication}) {
+  return {
+    authentication,
+  };
+}
+
+export default connect(mapStateToProps)(SignUpPage);

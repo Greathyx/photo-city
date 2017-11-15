@@ -14,7 +14,7 @@ import MenuItem from 'material-ui/MenuItem/MenuItem';
 import IconButton from 'material-ui/IconButton/IconButton';
 import DehazeIcon from 'material-ui/svg-icons/image/dehaze';
 import {GridList} from 'material-ui/GridList';
-import Dialog from 'material-ui/Dialog';
+import Dialog, {DialogActions, DialogContent} from 'material-ui-next/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
 import LoginForm from '../components/LoginForm';
@@ -25,11 +25,8 @@ const window_height = document.documentElement.clientHeight;
 
 const material_styles = {
   flatButtonLabelStyle: {
-    color: '#245168',
-  },
-  dialogStyle: {
-    width: 600,
-    maxWidth: 'none',
+    // color: '#245168',
+    color: '#00897b',
   }
 };
 
@@ -53,15 +50,6 @@ class HomePage extends React.Component {
 
   render() {
 
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onClick={this.handleClose}
-        labelStyle={material_styles.flatButtonLabelStyle}
-      />
-    ];
-
     return (
       <Layout style={{height: '100%'}}>
         <Content className={styles.mainContent}>
@@ -82,12 +70,22 @@ class HomePage extends React.Component {
           </div>
 
           <Dialog
-            actions={actions}
-            modal={true}
             open={this.state.open}
-            contentStyle={material_styles.dialogStyle}
           >
-            <LoginForm/>
+            <DialogContent
+              maxWidth="sm"
+              fullWidth
+            >
+              <LoginForm/>
+            </DialogContent>
+            <DialogActions>
+              <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.handleClose}
+                labelStyle={material_styles.flatButtonLabelStyle}
+              />
+            </DialogActions>
           </Dialog>
         </Content>
       </Layout>

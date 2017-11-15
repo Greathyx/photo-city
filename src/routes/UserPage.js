@@ -7,20 +7,32 @@ import styles from './css/UserPage.css';
 import SwipeableViews from 'react-swipeable-views';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {GridList} from 'material-ui/GridList';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatPagination from 'material-ui-flat-pagination';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import UploadIcon from 'material-ui/svg-icons/file/file-upload';
+import {Card, CardHeader, CardActions} from 'material-ui/Card';
+import Dialog, {DialogTitle, DialogActions, DialogContent} from 'material-ui-next/Dialog';
 
 import imgPortrait from '../assets/graphics/portrait.jpg';
 import NewPhotoGridList from '../components/PhotoGridList';
 import tileData from '../utils/imgLoader';
+import UploadPhotoForm from '../components/UploadPhotoForm';
 
 
 const material_styles = {
+  cardStyle: {
+    boxShadow: 'none',
+    width: '100%'
+  },
+  cardHeaderStyle: {
+    textAlign: 'left'
+  },
   slide: {
     paddingTop: 10,
   },
@@ -37,6 +49,12 @@ const material_styles = {
   },
   otherPageLabelStyle: {
     color: '#9E9E9E'
+  },
+  raisedButton: {
+    margin: 12,
+  },
+  flatButtonLabelStyle: {
+    color: '#00897b',
   }
 };
 
@@ -49,11 +67,22 @@ class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      open: false,
       slideIndex: 0,
       offset_myPhoto: 0,
     };
   }
 
+  // 打开上传图片对话框
+  handleOpen = () => {
+    this.setState({open: true,});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+  // 分页监听
   handleChange = (value) => {
     this.setState({
       slideIndex: value,
@@ -69,27 +98,36 @@ class UserPage extends React.Component {
     return (
       <div className={"col s12 m12 l12 " + styles.mainPanel} style={{paddingLeft: '4%', paddingRight: '4%'}}>
 
-        <GridList
-          className={styles.gridlist}
-          cols={2}
-          style={{height: 120, marginTop: 20, marginLeft: 10, marginBottom: 6}}
-        >
-          <Avatar src={imgPortrait} size={100}/>
-          <div className={styles.info_wrapper}>
-            <p className={styles.Username} style={{wordBreak: 'break-all', lineHeight: 1}}>Sherley
-              Huang</p>
-            <div>
-              <p className={styles.Email} style={{wordBreak: 'break-all', lineHeight: 1, display: 'inline'}}>
-                151250064@smail.nju.edu.cn</p>
-              <IconButton tooltip="Edit" touch={true} tooltipPosition="bottom-right">
-                <EditIcon/>
-              </IconButton>
-            </div>
-          </div>
-        </GridList>
+        <Card style={material_styles.cardStyle}>
+          <CardHeader
+            title="Sherley Huang"
+            subtitle={
+              <div>
+                <span>151250064@smail.nju.edu.cn</span>
+                <IconButton tooltip="Edit" touch={true} tooltipPosition="bottom-right">
+                  <EditIcon/>
+                </IconButton>
+              </div>
+            }
+            avatar={<Avatar src={imgPortrait} size={80}/>}
+            titleStyle={{fontSize: 32}}
+            subtitleStyle={{fontSize: 16, marginTop: -16}}
+            textStyle={material_styles.cardHeaderStyle}
+          />
+          <CardActions>
+            <RaisedButton
+              label="Upload"
+              labelPosition="after"
+              icon={<UploadIcon/>}
+              style={material_styles.raisedButton}
+              backgroundColor="#00897b"
+              labelStyle={{color: '#fff'}}
+              onClick={this.handleOpen}
+            />
+          </CardActions>
+        </Card>
 
         <div className="col s12 m12 l12">
-
           <Tabs
             onChange={this.handleChange}
             value={this.state.slideIndex}
@@ -136,6 +174,25 @@ class UserPage extends React.Component {
             </div>
           </SwipeableViews>
         </div>
+
+        <Dialog
+          open={this.state.open}
+          maxWidth="md"
+          fullWidth
+        >
+          <DialogTitle>Upload your photo(s)</DialogTitle>
+          <DialogContent>
+            <UploadPhotoForm/>
+          </DialogContent>
+          <DialogActions>
+            <FlatButton
+              label="Cancel"
+              primary={true}
+              onClick={this.handleClose}
+              labelStyle={material_styles.flatButtonLabelStyle}
+            />
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }

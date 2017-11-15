@@ -1,0 +1,17 @@
+.color {
+  color: #00897b;
+}
+
+.input:after {
+  color: #00897b;
+}
+
+.hint {
+  font-size: 18px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.tagButtons {
+  margin-top: 6px;
+}

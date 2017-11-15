@@ -1,5 +1,7 @@
 import fetch from 'dva/fetch';
 
+const host = 'http://127.0.0.1:3000';
+
 function parseJSON(response) {
   return response.json();
 }
@@ -22,9 +24,24 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  return fetch(url, options)
+
+  if (options === null) {
+    options = {};
+  }
+
+  if (options.headers === null) {
+    options.headers = {};
+  }
+
+  return fetch(host + url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then(data => ({ data }))
-    .catch(err => ({ err }));
+    //.then(data => ({ data }))
+    .then((data) => {
+      if (data === null) {
+        data = {};
+      }
+      return data;
+    })
+    .catch(err => ({err}));
 }

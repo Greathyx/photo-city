@@ -1,5 +1,6 @@
 .mainPanel {
   margin-top: 64px;
+  text-align: center;
 }
 
 .buttonEdit {
@@ -15,6 +16,7 @@
 @media screen and (min-width: 1200px) {
   .gridlist {
     width: 450px;
+    display: inline;
   }
 
   .info_wrapper {
