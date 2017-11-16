@@ -7,6 +7,8 @@ import request from '../utils/request';
 
 /**
  *
+ * 注册
+ *
  * param:{
  *      username: string
  *      password: string
@@ -30,6 +32,8 @@ export async function register(param) {
 
 /**
  *
+ * 登陆
+ *
  * you can login with username or email
  *
  * param:{
@@ -47,6 +51,20 @@ export async function login(param) {
   return request('/login', {
     method: 'POST',
     body: formData
+  })
+
+}
+
+/**
+ *
+ * 登出
+ *
+ * @returns {Promise.<Object>}
+ */
+export async function logout() {
+
+  return request('/logout', {
+    method: 'GET',
   })
 
 }

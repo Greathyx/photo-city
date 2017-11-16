@@ -11,6 +11,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import Snackbar from 'material-ui-next/Snackbar';
 import FlatButton from 'material-ui/FlatButton';
+import {message} from 'antd';
 
 
 const material_styles = {
@@ -57,21 +58,25 @@ class LoginForm extends React.Component {
 
   // 登陆按钮监听
   handleLogin = () => {
-    let loginName = document.getElementById("loginName").value;
+    let loginName = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
+    console.log(loginName);
+
     if (loginName === '') {
-      this.setState({
-        openSnackBar: true,
-        hint: 'Please type in your username or email.',
-      });
+      // this.setState({
+      //   openSnackBar: true,
+      //   hint: 'Please type in your username or email.',
+      // });
+      message.error('Please type in your username or email.');
     }
 
     else if (password === '') {
-      this.setState({
-        openSnackBar: true,
-        hint: 'Please type in your password.',
-      });
+      // this.setState({
+      //   openSnackBar: true,
+      //   hint: 'Please type in your password.',
+      // });
+      message.error('Please type in your password.');
     }
 
     else {
@@ -107,8 +112,8 @@ class LoginForm extends React.Component {
 
         <div className="row">
           <div className="input-field col s12">
-            <input id="loginName" type="text" className="validate"/>
-            <label htmlFor="loginName">Username/Email</label>
+            <input id="username" type="text" className="validate"/>
+            <label htmlFor="username">Username / Email</label>
           </div>
           <div className="input-field col s12">
             <input id="password" type="password" className="validate"/>

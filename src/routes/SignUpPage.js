@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {connect} from 'dva'
+import {connect} from 'dva';
 import styles from './css/SignUpPage.css';
 import imgLogo from '../assets/graphics/logo.png';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -16,6 +16,7 @@ import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import Snackbar from 'material-ui-next/Snackbar';
 import {img} from 'antd';
+import {message} from 'antd';
 
 
 const material_styles = {
@@ -105,31 +106,35 @@ class SignUpPage extends React.Component {
     const checkEmail = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;
     if (!checkEmail.test(email)) {
       if (email === '') {
-        this.setState({
-          openSnackBar: true,
-          hint: 'Please type in your email address.',
-        });
+        // this.setState({
+        //   openSnackBar: true,
+        //   hint: 'Please type in your email address.',
+        // });
+        message.error('Please type in your email address.');
       }
       else {
-        this.setState({
-          openSnackBar: true,
-          hint: 'Please type in the right email address.',
-        });
+        // this.setState({
+        //   openSnackBar: true,
+        //   hint: 'Please type in a valid email address.',
+        // });
+        message.error('Please type in a valid email address.');
       }
     }
 
     else if (username === '') {
-      this.setState({
-        openSnackBar: true,
-        hint: 'Please type in your username.',
-      });
+      // this.setState({
+      //   openSnackBar: true,
+      //   hint: 'Please type in your username.',
+      // });
+      message.error('Please type in your username.');
     }
 
     else if (password === '') {
-      this.setState({
-        openSnackBar: true,
-        hint: 'Please type in your password.',
-      });
+      // this.setState({
+      //   openSnackBar: true,
+      //   hint: 'Please type in your password.',
+      // });
+      message.error('Please type in your password.');
     }
 
     else {

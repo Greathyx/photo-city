@@ -10,3 +10,29 @@
   width: 100%;
   text-align: center;
 }
+
+.p {
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 32px;
+}
+
+.span {
+  text-align: center;
+  color: #333333;
+  font-size: 26px;
+}
+
+.link {
+  color: #00897b;
+  font-size: 26px;
+}
+
+.link:hover {
+  color: #00897b;
+  text-decoration: underline;
+  font-size: 26px;
+}

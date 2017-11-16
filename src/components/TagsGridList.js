@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import {hashHistory} from 'react-router';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import styles from './css/TagsGridList.css';
@@ -39,6 +40,12 @@ class TagsGridList extends React.Component {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
 
+  // 根据标签名字，跳转到分类标签界面
+  handleClickTag(tag_name) {
+    // todo
+    hashHistory.push("/gallery/tag=" + tag_name);
+  }
+
   render() {
     return (
       <div style={material_styles.root}>
@@ -51,6 +58,7 @@ class TagsGridList extends React.Component {
               titleStyle={material_styles.gridTitle}
               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
               className={styles.gridTile}
+              onClick={(e, tag_name)=>this.handleClickTag(tile.title)}
             >
               <img
                 src={tile.img}

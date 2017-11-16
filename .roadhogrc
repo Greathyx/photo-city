@@ -1,5 +1,6 @@
 {
   "entry": "src/index.js",
+  "publicPath": "/PhotoCity/",
   "env": {
     "development": {
       "extraBabelPlugins": [

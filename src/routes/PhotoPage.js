@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import {connect} from 'dva';
 import PageHeader from '../components/PageHeader';
 import styles from './css/PhotoPage.css';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -14,7 +15,7 @@ import FlatPagination from 'material-ui-flat-pagination';
 import NewPhotoGridList from '../components/PhotoGridList';
 import TagsGridList from '../components/TagsGridList';
 import Classification from '../components/ClassificationPanel';
-import NewDynamicsPanel from '../components/NewDynamicsPanel';
+import NewDynamicsPanel from '../components/NewDynamicsForm';
 import tileData from '../utils/imgLoader';
 
 
@@ -99,7 +100,7 @@ class PhotoPage extends React.Component {
         {
           head: 'Animal',
           subhead: 'Download diverse photos of animals with various appearances, habitats and emotions.',
-          tileData: tileData.classification_animal_tileData
+          tileData: tileData.classification_animal_tileData,
         },
         {
           head: 'Business',
@@ -191,6 +192,14 @@ class PhotoPage extends React.Component {
     }
   }
 
+  // 打开登陆面板监听
+  handleOpenLoginForm = () => {
+    this.props.dispatch({
+      type: 'authentication/updateShowLoginForm',
+      payload: {showLoginForm: true}
+    });
+  };
+
   render() {
     return (
       <div className={"col s12 m12 l12" + " " + styles.mainPanel} style={{paddingLeft: '4%', paddingRight: '4%'}}>
@@ -245,6 +254,7 @@ class PhotoPage extends React.Component {
                   head={classification_item.head}
                   subhead={classification_item.subhead}
                   tileData={classification_item.tileData}
+                  tag={classification_item.head}
                   cols={12}
                   height={200}
                 />
@@ -269,12 +279,21 @@ class PhotoPage extends React.Component {
             </div>
 
             <div>
-              <NewDynamicsPanel/>
+              {
+                this.props.authentication.hasLoggedIn ?
+                  <NewDynamicsPanel/>
+                  :
+                  <div className="col s12 m12 l12" style={{textAlign: 'center'}}>
+                    <p className={styles.p}>You haven't logged in yet, please login first.</p>
+                    <span className={styles.span}>Click </span>
+                    <a className={styles.link} onClick={this.handleOpenLoginForm}>here</a>
+                    <span className={styles.span}> to login.</span>
+                  </div>
+              }
             </div>
 
           </SwipeableViews>
         </div>
-
       </div>
     );
   }
@@ -284,4 +303,10 @@ PhotoPage.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default PhotoPage;
+function mapStateToProps({authentication}) {
+  return {
+    authentication,
+  };
+}
+
+export default connect(mapStateToProps)(PhotoPage);

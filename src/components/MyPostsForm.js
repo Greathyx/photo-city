@@ -1,11 +1,10 @@
 /**
- * Created by hyx on 2017/11/07.
+ * Created by hyx on 2017/11/16.
  */
 
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import imgPortrait from '../assets/graphics/portrait.jpg';
 import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import tileData from '../utils/imgLoader';
 import PhotoGrid from './PhotoGridList';
@@ -39,18 +38,11 @@ const material_styles = {
     fontSize: 16,
     float: 'right',
     marginRight: 2
-  },
-  gridStyle: {
-    width: '100%',
-    marginLeft: 0,
-  },
-  flatButtonLabelStyle: {
-    color: '#00897b',
   }
 
 };
 
-class NewDynamicsPanel extends React.Component {
+class MyPostsForm extends React.Component {
 
   getChildContext() {
     return {muiTheme: getMuiTheme(baseTheme)};
@@ -61,11 +53,10 @@ class NewDynamicsPanel extends React.Component {
       <div style={material_styles.root}>
         <Card style={material_styles.cardStyle}>
           <CardHeader
-            title="Sherley Huang"
-            subtitle="151250064@smail.nju.edu.cn"
-            avatar={<img src={imgPortrait} className="circle responsive-img" style={{maxWidth: 52}}/>}
-            titleStyle={{fontSize: 20}}
-            subtitleStyle={{fontSize: 14}}
+            title="2017/07/18 06:11"
+            // subtitle="151250064@smail.nju.edu.cn"
+            titleStyle={{fontSize: 24}}
+            // subtitleStyle={{fontSize: 14}}
           />
           <CardText style={material_styles.cardTextStyle}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -80,18 +71,18 @@ class NewDynamicsPanel extends React.Component {
               height={200}
             />
           </CardMedia>
-          <CardTitle
-            title="2017/07/18 06:11"
-            titleStyle={material_styles.cardTitleStyle}
-          />
+          {/*<CardTitle*/}
+            {/*title="2017/07/18 06:11"*/}
+            {/*titleStyle={material_styles.cardTitleStyle}*/}
+          {/*/>*/}
         </Card>
       </div>
     )
   }
 }
 
-NewDynamicsPanel.childContextTypes = {
+MyPostsForm.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default NewDynamicsPanel;
+export default MyPostsForm;

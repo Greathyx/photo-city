@@ -9,9 +9,11 @@
 .hint {
   font-size: 18px;
   margin-top: 5px;
-  margin-right: 5px;
+  margin-right: 8px;
+  color: #333333;
 }
 
 .tagButtons {
   margin-top: 6px;
 }
+

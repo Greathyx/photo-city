@@ -424,63 +424,63 @@ const test2_tileData = [
 const tag_tileData = [
   {
     img: animal_tag,
-    title: 'animal'
+    title: 'Animal'
   },
   {
     img: business_tag,
-    title: 'business'
+    title: 'Business'
   },
   {
     img: cool_tag,
-    title: 'cool'
+    title: 'Cool'
   },
   {
     img: food_tag,
-    title: 'food'
+    title: 'Food'
   },
   {
     img: friends_tag,
-    title: 'friends'
+    title: 'Friends'
   },
   {
     img: happiness_tag,
-    title: 'happiness'
+    title: 'Happiness'
   },
   {
     img: health_tag,
-    title: 'health'
+    title: 'Health'
   },
   {
     img: house_tag,
-    title: 'house'
+    title: 'House'
   },
   {
     img: love_tag,
-    title: 'love'
+    title: 'Love'
   },
   {
     img: nature_tag,
-    title: 'nature'
+    title: 'Nature'
   },
   {
     img: pet_tag,
-    title: 'pet'
+    title: 'Pet'
   },
   {
     img: portrait_tag,
-    title: 'portrait'
+    title: 'Portrait'
   },
   {
     img: season_tag,
-    title: 'season'
+    title: 'Season'
   },
   {
     img: sport_tag,
-    title: 'sport'
+    title: 'Sport'
   },
   {
     img: technology_tag,
-    title: 'technology'
+    title: 'Technology'
   }
 ];
 

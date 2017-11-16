@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import {hashHistory} from 'react-router';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import styles from './css/ClassificationPanel.css';
@@ -101,8 +102,9 @@ class ClassificationPanel extends React.Component {
   };
 
   // 查看更多图片方法
-  handleViewMore() {
+  handleViewMore(tag_name) {
     // todo
+    hashHistory.push("/gallery/tag=" + tag_name);
   };
 
   render() {
@@ -146,7 +148,7 @@ class ClassificationPanel extends React.Component {
             <FlatButton
               label="View more >>"
               primary={true}
-              onClick={this.handleViewMore}
+              onClick={(e, tag_name)=>this.handleViewMore(this.props.tag)}
               labelStyle={material_styles.flatButtonLabelViewMoreStyle}
               style={{width: '100%', height: '100%'}}
             />

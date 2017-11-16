@@ -20,7 +20,7 @@ class TagPage extends React.Component {
       <div className={"col s12 m12 l12" + " " + styles.mainPanel} style={{paddingLeft: '4%', paddingRight: '4%'}}>
         <PageHeader
           head={this.props.params.tag + " pictures"}
-          subhead={"Enjoy beautiful " + this.props.params.tag + " pictures."}
+          subhead={"Enjoy beautiful pictures of " + this.props.params.tag + "."}
         />
         <PhotoGrid
           tileData={tileData.test1_tileData}

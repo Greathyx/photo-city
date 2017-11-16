@@ -1,16 +1,13 @@
 import React from 'react';
 import styles from './css/GalleryPage.css';
 import {Link} from 'dva/router';
+import {connect} from 'dva';
 import {img} from 'antd';
+import {message} from 'antd';
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-// import Dialog from 'material-ui/Dialog';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-} from 'material-ui-next/Dialog';
-
+import Dialog, {DialogActions, DialogContent} from 'material-ui-next/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import {GridList} from 'material-ui/GridList';
@@ -60,7 +57,7 @@ class GalleryPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openLoginForm: false,
+      // openLoginForm: false,
       openDrawer: false,
       openUserDrawer: false,
       windowHeight: window.innerHeight,
@@ -77,12 +74,20 @@ class GalleryPage extends React.Component {
   handleCloseUserDrawer = () => this.setState({openUserDrawer: false});
 
   handleOpenLoginForm = () => {
-    this.setState({openLoginForm: true});
+    // this.setState({openLoginForm: true});
     this.handleCloseDrawer();
+    this.props.dispatch({
+      type: 'authentication/updateShowLoginForm',
+      payload: {showLoginForm: true}
+    });
   };
 
   handleCloseLoginForm = () => {
-    this.setState({openLoginForm: false});
+    // this.setState({openLoginForm: false});
+    this.props.dispatch({
+      type: 'authentication/updateShowLoginForm',
+      payload: {showLoginForm: false}
+    });
   };
 
   // 实现屏幕放大，抽屉自动合上
@@ -104,6 +109,13 @@ class GalleryPage extends React.Component {
     window.removeEventListener('resize', ::this.handleResize)
   }
 
+  handleLogout = () => {
+    this.props.dispatch({
+      type: 'authentication/logout',
+    });
+  };
+
+
   render() {
 
     return (
@@ -117,31 +129,55 @@ class GalleryPage extends React.Component {
               <DehazeIcon className={styles.menuIcon}/>
             </a>
 
-            <GridList
-              id="nav-mobile"
-              className="right hide-on-med-and-down"
-              cols={4}
-              style={{height: 64, marginRight: 20}}
-            >
-              <Link to="/homepage">
-                <FlatButton label="Home" labelStyle={material_styles.navLabelStyle}/>
-              </Link>
-              <Link to="/gallery/photo">
-                <FlatButton label="Photos" labelStyle={material_styles.navLabelStyle}/>
-              </Link>
-              {/*<Link to="/gallery/video">*/}
-              {/*<FlatButton label="Videos" labelStyle={material_styles.navLabelStyle}/>*/}
-              {/*</Link>*/}
-              <Link onClick={this.handleOpenLoginForm}>
-                <FlatButton label="Login" labelStyle={material_styles.navLabelStyle}/>
-              </Link>
-              {/*<Link to="/sign-up">*/}
-              {/*<FlatButton label="Join" labelStyle={material_styles.navLabelStyle}/>*/}
-              {/*</Link>*/}
-              <Link onClick={this.handleToggleUserDrawer}>
-                <FlatButton label="User" labelStyle={material_styles.navLabelStyle}/>
-              </Link>
-            </GridList>
+            {
+              this.props.authentication.hasLoggedIn ?
+                <GridList
+                  id="nav-mobile"
+                  className="right hide-on-med-and-down"
+                  cols={4}
+                  style={{height: 64, marginRight: 20}}
+                >
+                  <Link to="/homepage">
+                    <FlatButton label="Home" labelStyle={material_styles.navLabelStyle}/>
+                  </Link>
+                  <Link to="/gallery/photo">
+                    <FlatButton label="Photos" labelStyle={material_styles.navLabelStyle}/>
+                  </Link>
+                  {/*<Link to="/gallery/video">*/}
+                  {/*<FlatButton label="Videos" labelStyle={material_styles.navLabelStyle}/>*/}
+                  {/*</Link>*/}
+                  <Link onClick={this.handleToggleUserDrawer}>
+                    <FlatButton label="User" labelStyle={material_styles.navLabelStyle}/>
+                  </Link>
+                  <Link onClick={this.handleLogout}>
+                    <FlatButton label="Logout" labelStyle={material_styles.navLabelStyle}/>
+                  </Link>
+                </GridList>
+                :
+                <GridList
+                  id="nav-mobile"
+                  className="right hide-on-med-and-down"
+                  cols={4}
+                  style={{height: 64, marginRight: 20}}
+                >
+                  <Link to="/homepage">
+                    <FlatButton label="Home" labelStyle={material_styles.navLabelStyle}/>
+                  </Link>
+                  <Link to="/gallery/photo">
+                    <FlatButton label="Photos" labelStyle={material_styles.navLabelStyle}/>
+                  </Link>
+                  {/*<Link to="/gallery/video">*/}
+                  {/*<FlatButton label="Videos" labelStyle={material_styles.navLabelStyle}/>*/}
+                  {/*</Link>*/}
+                  <Link onClick={this.handleOpenLoginForm}>
+                    <FlatButton label="Login" labelStyle={material_styles.navLabelStyle}/>
+                  </Link>
+                  <Link to="/sign-up">
+                    <FlatButton label="Join" labelStyle={material_styles.navLabelStyle}/>
+                  </Link>
+                </GridList>
+            }
+
           </div>
         </nav>
 
@@ -189,8 +225,12 @@ class GalleryPage extends React.Component {
           >
             <Avatar src={imgPortrait} size={80}/>
             <div style={{marginLeft: -32, marginTop: 8}}>
-              <p style={{fontSize: 20, wordBreak: 'break-all', lineHeight: 1, marginBottom: 12}}>Sherley Huang</p>
-              <p style={{fontSize: 13, wordBreak: 'break-all', lineHeight: 1}}>151250064@smail.nju.edu.cn</p>
+              <p style={{fontSize: 28, wordBreak: 'break-all', lineHeight: 1, marginBottom: 16}}>
+                {this.props.authentication.username}
+              </p>
+              <p style={{fontSize: 16, wordBreak: 'break-all', lineHeight: 1}}>
+                {this.props.authentication.email}
+              </p>
             </div>
           </GridList>
 
@@ -239,7 +279,7 @@ class GalleryPage extends React.Component {
         </Drawer>
 
         <Dialog
-          open={this.state.openLoginForm}
+          open={this.props.authentication.showLoginForm}
         >
           <DialogContent
             maxWidth="sm"
@@ -265,4 +305,10 @@ GalleryPage.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default GalleryPage;
+function mapStateToProps({authentication}) {
+  return {
+    authentication,
+  };
+}
+
+export default connect(mapStateToProps)(GalleryPage);

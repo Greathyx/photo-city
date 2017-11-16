@@ -3,13 +3,15 @@
  */
 
 import React from 'react';
+import styles from './css/UploadPhotoForm.css';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import TextField from 'material-ui/TextField';
 import Chip from 'material-ui/Chip';
 import FlatButton from 'material-ui/FlatButton';
-
-import styles from './css/UploadPhotoForm.css';
+import ImageUploader from 'react-images-upload';
+import Hologram from 'hologram-image-upload';
+import 'hologram-image-upload/dist/css/Hologram.css';
 
 
 const material_styles = {
@@ -27,7 +29,27 @@ const material_styles = {
   },
   floatingLabelFocusStyle: {
     color: '#00897b',
+    fontSize: 23
   },
+  floatingLabelStyle: {
+    color: '#333333',
+    fontSize: 23
+  },
+  labelStyle: {
+    color: '#00897b',
+  }
+};
+
+var dropZoneConfig = {
+  style : {
+    marginTop: 20,
+    marginBottom: 20,
+    textAlign: 'center',
+    padding: '2.5em 0',
+    background: '#fff',
+    // border: '4px dashed #9E9E9E',
+    color: '#fff'
+  }
 };
 
 class UploadPhotoForm extends React.Component {
@@ -39,6 +61,7 @@ class UploadPhotoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      pictures: [],
       chipData: [],
       tagData: [
         {key: 0, label: 'Animal'},
@@ -58,6 +81,13 @@ class UploadPhotoForm extends React.Component {
         {key: 14, label: 'Technology'},
       ]
     };
+    this.onDrop = this.onDrop.bind(this);
+  }
+
+  onDrop(picture) {
+    this.setState({
+      pictures: this.state.pictures.concat(picture),
+    });
   }
 
   handleChooseTag(key) {
@@ -96,32 +126,53 @@ class UploadPhotoForm extends React.Component {
   render() {
     return (
       <div className="row">
-        <TextField
-          hintText="Type in the descriptions of your photo(s) here."
-          floatingLabelText="Descriptions"
-          multiLine={true}
-          fullWidth={true}
-          rows={1}
-          underlineFocusStyle={material_styles.underlineFocusStyle}
-          floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
+        {/*<ImageUploader*/}
+          {/*withIcon={true}*/}
+          {/*buttonText='Choose images'*/}
+          {/*onChange={this.onDrop}*/}
+          {/*imgExtension={['.jpg', '.JPG', '.gif', '.png']}*/}
+          {/*maxFileSize={5242880}*/}
+          {/*label='Max file size: 5MB, accepted: jpg, JPG, png, gif'*/}
+          {/*buttonStyles={{borderRadius: 2, backgroundColor: '#00897b'}}*/}
+          {/*style={{margin: '0 auto'}}*/}
+        {/*/>*/}
+
+        <Hologram
+          dropzoneConfig={dropZoneConfig}
+          maxFiles={6}
         />
 
-        <div className="col s12 m12 l12" style={material_styles.wrapper}>
-          <span className={styles.hint}>Tags:</span>
-          {this.state.chipData.map(this.renderChip, this)}
-        </div>
-
-        <div className="col s12 m12 l12" style={material_styles.wrapper}>
-          <span className={styles.hint}>Please choose tags:</span>
-          <div className={styles.tagButtons}>
-            {this.state.tagData.map((data) => (
-              <FlatButton
-                label={data.label}
-                key={data.key}
-                onClick={() => this.handleChooseTag(data.key)}
-              />
-            ))}
+        <div style={{margin: '0 50px'}}>
+          <div className="col s12 m12 l12" style={material_styles.wrapper}>
+            <span className={styles.hint}>Tags:</span>
+            {this.state.chipData.map(this.renderChip, this)}
           </div>
+
+          <div className="col s12 m12 l12" style={material_styles.wrapper}>
+            <span className={styles.hint}>Please choose tags:</span>
+            <div className={styles.tagButtons}>
+              {this.state.tagData.map((data) => (
+                <FlatButton
+                  label={data.label}
+                  key={data.key}
+                  onClick={() => this.handleChooseTag(data.key)}
+                  labelStyle={material_styles.labelStyle}
+                />
+              ))}
+            </div>
+          </div>
+
+          <TextField
+            hintText="Type in the description of your photo(s) here."
+            floatingLabelText="Description:"
+            multiLine={true}
+            fullWidth={true}
+            floatingLabelFixed={true}
+            rows={1}
+            underlineFocusStyle={material_styles.underlineFocusStyle}
+            floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
+            floatingLabelStyle={material_styles.floatingLabelStyle}
+          />
         </div>
       </div>
     );
