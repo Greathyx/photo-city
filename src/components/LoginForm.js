@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {connect} from 'dva'
+import {connect} from 'dva';
 import {Link} from 'dva/router';
 import styles from './css/LoginForm.css';
 import imgLogo from '../assets/graphics/logo.png';

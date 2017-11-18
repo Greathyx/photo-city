@@ -11,6 +11,7 @@ export default {
   namespace: 'authentication',
 
   state: {
+    userId: null,
     username: null,
     email: null,
     hasLoggedIn: false,
@@ -49,9 +50,17 @@ export default {
         }
       });
 
+      const userId = sessionStorage.getItem('userId');
       const username = sessionStorage.getItem('username');
       const email = sessionStorage.getItem('email');
       const hasLoggedIn = sessionStorage.getItem('hasLoggedIn');
+
+      if (userId && userId !== undefined) {
+        dispatch({
+          type: 'updateUserId',
+          payload: {userId: userId},
+        });
+      }
 
       if (username && username !== undefined) {
         dispatch({
@@ -106,7 +115,6 @@ export default {
           });
         }
         else {
-
           sessionStorage.setItem('username', payload.username);
           sessionStorage.setItem('email', data.user.email);
 
@@ -119,8 +127,12 @@ export default {
             type: 'updateEmail',
             payload: {email: data.user.email},
           });
-
         }
+
+        yield put({
+          type: 'updateUserId',
+          payload: {userId: data.user.id}
+        });
 
         yield put({
           type: 'updateHasLoggedIn',
@@ -132,6 +144,7 @@ export default {
           payload: {showLoginForm: false}
         });
 
+        sessionStorage.setItem('userId', data.user.id);
         sessionStorage.setItem('hasLoggedIn', true);
         message.success('Login successfully!');
       }
@@ -200,6 +213,13 @@ export default {
   },
 
   reducers: {
+
+    updateUserId(state, action) {
+      return {
+        ...state,
+        userId: action.payload.userId,
+      }
+    },
 
     updateUsername(state, action) {
       return {

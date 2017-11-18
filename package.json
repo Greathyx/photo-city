@@ -14,7 +14,6 @@
     "babel-plugin-import": "^1.6.2",
     "babel-runtime": "^6.9.2",
     "dva": "^1.2.1",
-    "hologram-image-upload": "^2.4.3",
     "jquery": "^3.2.1",
     "material-ui": "^0.19.4",
     "material-ui-codemod": "^1.0.0-beta.11",
@@ -24,7 +23,6 @@
     "materialize-css": "^0.100.2",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
-    "react-images-upload": "^1.1.1",
     "react-swipeable-views": "^0.12.10"
   },
   "devDependencies": {

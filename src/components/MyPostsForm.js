@@ -55,7 +55,7 @@ class MyPostsForm extends React.Component {
           <CardHeader
             title="2017/07/18 06:11"
             // subtitle="151250064@smail.nju.edu.cn"
-            titleStyle={{fontSize: 24}}
+            titleStyle={{fontSize: 32}}
             // subtitleStyle={{fontSize: 14}}
           />
           <CardText style={material_styles.cardTextStyle}>

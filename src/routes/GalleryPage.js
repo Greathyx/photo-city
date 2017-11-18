@@ -3,8 +3,6 @@ import styles from './css/GalleryPage.css';
 import {Link} from 'dva/router';
 import {connect} from 'dva';
 import {img} from 'antd';
-import {message} from 'antd';
-
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Dialog, {DialogActions, DialogContent} from 'material-ui-next/Dialog';
@@ -27,7 +25,7 @@ import Favourite from 'material-ui/svg-icons/action/favorite-border';
 import Homepage from 'material-ui/svg-icons/content/send';
 import Following from 'material-ui/svg-icons/social/person';
 import Follower from 'material-ui/svg-icons/social/person-outline';
-
+import Logout from 'material-ui/svg-icons/action/exit-to-app';
 import imgLogo from '../assets/graphics/logo_small.png';
 import imgPortrait from '../assets/graphics/portrait.jpg';
 import LoginForm from '../components/LoginForm';
@@ -69,7 +67,10 @@ class GalleryPage extends React.Component {
 
   handleCloseDrawer = () => this.setState({openDrawer: false});
 
-  handleToggleUserDrawer = () => this.setState({openUserDrawer: !this.state.openUserDrawer});
+  handleToggleUserDrawer = () => {
+    this.setState({openUserDrawer: !this.state.openUserDrawer});
+    this.handleCloseDrawer();
+  };
 
   handleCloseUserDrawer = () => this.setState({openUserDrawer: false});
 
@@ -113,6 +114,7 @@ class GalleryPage extends React.Component {
     this.props.dispatch({
       type: 'authentication/logout',
     });
+    this.handleCloseDrawer();
   };
 
 
@@ -197,10 +199,20 @@ class GalleryPage extends React.Component {
         >
           <Link to="/homepage"><MenuItem leftIcon={<Home/>}>Home</MenuItem></Link>
           <Link to="/gallery/photo"><MenuItem leftIcon={<Photo/>}>Photos</MenuItem></Link>
-          <Link to="/gallery/video"><MenuItem leftIcon={<Video/>}>Videos</MenuItem></Link>
+          {/*<Link to="/gallery/video"><MenuItem leftIcon={<Video/>}>Videos</MenuItem></Link>*/}
           <Divider style={{marginLeft: 15}}/>
-          <MenuItem onClick={this.handleOpenLoginForm} leftIcon={<Login/>}>Login</MenuItem>
-          <Link to="/sign-up"><MenuItem leftIcon={<Join/>}>Join</MenuItem></Link>
+          {
+            this.props.authentication.hasLoggedIn ?
+              <div>
+                <MenuItem onClick={this.handleToggleUserDrawer} leftIcon={<Following/>}>User</MenuItem>
+                <MenuItem onClick={this.handleLogout} leftIcon={<Logout/>}>Logout</MenuItem>
+              </div>
+              :
+              <div>
+                <MenuItem onClick={this.handleOpenLoginForm} leftIcon={<Login/>}>Login</MenuItem>
+                <Link to="/sign-up"><MenuItem leftIcon={<Join/>}>Join</MenuItem></Link>
+              </div>
+          }
         </Drawer>
 
         {/**

@@ -1,23 +1,30 @@
-@-webkit-keyframes fadeIn {
-  0% {
-    /*opacity: 1; !*初始状态 透明度为0*!*/
-    -webkit-filter: brightness(1); /*初始状态，亮度为1*/
-    filter: brightness(1);
-  }
-  100% {
-    /*opacity: 0.8; !*结尾状态 透明度为0.8*!*/
-    /*filter: alpha(opacity=80); !*IE的写法*!*/
-    /*-moz-opacity: 0.8; !*firebox的写法*!*/
-    -webkit-filter: brightness(0.9); /*结尾状态 亮度为0.9*/
-    filter: brightness(0.9);
-  }
+/*@-webkit-keyframes fadeIn {*/
+  /*0% {*/
+    /*!*opacity: 1; !*初始状态 透明度为0*!*!*/
+    /*-webkit-filter: brightness(1); !*初始状态，亮度为1*!*/
+    /*filter: brightness(1);*/
+  /*}*/
+  /*100% {*/
+    /*!*opacity: 0.8; !*结尾状态 透明度为0.8*!*!*/
+    /*!*filter: alpha(opacity=80); !*IE的写法*!*!*/
+    /*!*-moz-opacity: 0.8; !*firebox的写法*!*!*/
+    /*-webkit-filter: brightness(0.9); !*结尾状态 亮度为0.9*!*/
+    /*filter: brightness(0.9);*/
+  /*}*/
+/*}*/
+
+.img {
+  cursor: pointer;
+  -webkit-filter: brightness(1);
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
 
 .img:hover {
   cursor: pointer;
-  -webkit-animation-name: fadeIn; /*动画名称*/
-  -webkit-animation-duration: 0.5s; /*动画持续时间*/
-  -webkit-animation-delay: 0s; /*延迟时间*/
+  /*-webkit-animation-name: fadeIn; !*动画名称*!*/
+  /*-webkit-animation-duration: 0.5s; !*动画持续时间*!*/
+  /*-webkit-animation-delay: 0s; !*延迟时间*!*/
   /*opacity: 0.8;*/
   /*filter: alpha(opacity=80);*/
   /*-moz-opacity: 0.8;*/

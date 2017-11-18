@@ -3,15 +3,17 @@
  */
 
 import React from 'react';
+import {connect} from 'dva';
+import {message, Upload, Icon} from 'antd';
 import styles from './css/UploadPhotoForm.css';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import TextField from 'material-ui/TextField';
 import Chip from 'material-ui/Chip';
 import FlatButton from 'material-ui/FlatButton';
-import ImageUploader from 'react-images-upload';
-import Hologram from 'hologram-image-upload';
-import 'hologram-image-upload/dist/css/Hologram.css';
+import Dialog, {DialogActions, DialogContent} from 'material-ui-next/Dialog';
+import RaisedButton from 'material-ui/RaisedButton';
+import UploadIcon from 'material-ui/svg-icons/file/file-upload';
 
 
 const material_styles = {
@@ -21,7 +23,7 @@ const material_styles = {
   wrapper: {
     display: 'flex',
     flexWrap: 'wrap',
-    marginTop: 10,
+    marginTop: 16,
     paddingLeft: 0
   },
   underlineFocusStyle: {
@@ -36,21 +38,13 @@ const material_styles = {
     fontSize: 23
   },
   labelStyle: {
+    color: '#757575',
+  },
+  flatButtonLabelStyle: {
     color: '#00897b',
   }
 };
 
-var dropZoneConfig = {
-  style : {
-    marginTop: 20,
-    marginBottom: 20,
-    textAlign: 'center',
-    padding: '2.5em 0',
-    background: '#fff',
-    // border: '4px dashed #9E9E9E',
-    color: '#fff'
-  }
-};
 
 class UploadPhotoForm extends React.Component {
 
@@ -61,7 +55,7 @@ class UploadPhotoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pictures: [],
+      open: false,
       chipData: [],
       tagData: [
         {key: 0, label: 'Animal'},
@@ -79,17 +73,27 @@ class UploadPhotoForm extends React.Component {
         {key: 12, label: 'Season'},
         {key: 13, label: 'Sport'},
         {key: 14, label: 'Technology'},
-      ]
+      ],
+      previewVisible: false,
+      previewImage: '',
+      fileList: [],
     };
-    this.onDrop = this.onDrop.bind(this);
   }
 
-  onDrop(picture) {
+  // 预览上传的图片
+  handlePreview = (file) => {
     this.setState({
-      pictures: this.state.pictures.concat(picture),
+      previewImage: file.url || file.thumbUrl,
+      open: true
     });
-  }
+  };
 
+  // 关闭预览图片
+  handleCancelPreview = () => {
+    this.setState({open: false});
+  };
+
+  // 选择标签
   handleChooseTag(key) {
     this.chipData = this.state.chipData;
     for (let i = 0; i < this.state.tagData.length; i++) {
@@ -100,6 +104,7 @@ class UploadPhotoForm extends React.Component {
     this.setState({chipData: this.chipData});
   }
 
+  // 删除已选标签
   handleRequestDelete = (key) => {
     // if (key === 3) {
     //   alert('Why would you want to delete React?! :)');
@@ -111,6 +116,40 @@ class UploadPhotoForm extends React.Component {
     this.setState({chipData: this.chipData});
   };
 
+
+  /**
+   *
+   * file: 当前操作的文件对象
+   *
+   * {
+   *   uid: 'uid',      // 文件唯一标识，建议设置为负数，防止和内部产生的 id 冲突
+   *   name: 'xx.png'   // 文件名
+   *   status: 'done',  // 状态有：uploading done error removed
+   *   response: '{"imgUrl": "http://127.0.0.1:3000/upload_db5f2a1f91f5e26ac5958611950153fd.jpg"}', // 服务端响应内容
+   * }
+   *
+   */
+  handleUploadChange = ({fileList, file}) => {
+    this.setState({fileList});
+    if (file.status === 'done') {
+      console.log(file.response.imgUrl);
+    }
+  };
+
+  // 上传新动态监听
+  handleSubmit = () => {
+    if (this.state.fileList.length === 0) {
+      message.warning("Please upload at least one photo!");
+    }
+    else if (this.state.chipData.length === 0){
+      message.warning("Please choose at least one tag!");
+    }
+    else {
+      // todo
+    }
+  };
+
+  // 标签创建器
   renderChip(data) {
     return (
       <Chip
@@ -124,32 +163,55 @@ class UploadPhotoForm extends React.Component {
   }
 
   render() {
+
+    const {previewImage, fileList} = this.state;
+
+    const uploadButton = (
+      <div>
+        <Icon className={styles.icon} type="plus"/>
+      </div>
+    );
+
     return (
-      <div className="row">
-        {/*<ImageUploader*/}
-          {/*withIcon={true}*/}
-          {/*buttonText='Choose images'*/}
-          {/*onChange={this.onDrop}*/}
-          {/*imgExtension={['.jpg', '.JPG', '.gif', '.png']}*/}
-          {/*maxFileSize={5242880}*/}
-          {/*label='Max file size: 5MB, accepted: jpg, JPG, png, gif'*/}
-          {/*buttonStyles={{borderRadius: 2, backgroundColor: '#00897b'}}*/}
-          {/*style={{margin: '0 auto'}}*/}
-        {/*/>*/}
+      <div className="row" style={{paddingTop: 20}}>
 
-        <Hologram
-          dropzoneConfig={dropZoneConfig}
-          maxFiles={6}
-        />
+        <div className="col s12 m12 l12" style={{marginLeft: 20}}>
+          <Upload
+            action="http://127.0.0.1:3000/uploadPhotos"
+            listType="picture-card"
+            fileList={fileList}
+            onPreview={this.handlePreview}
+            onChange={this.handleUploadChange}
+          >
+            {fileList.length >= 8 ? null : uploadButton}
+          </Upload>
+          <Dialog
+            open={this.state.open}
+            maxWidth="md"
+            fullWidth
+          >
+            <DialogContent>
+              <img className="responsive-img" src={previewImage}/>
+            </DialogContent>
+            <DialogActions>
+              <FlatButton
+                label="Close"
+                primary={true}
+                onClick={this.handleCancelPreview}
+                labelStyle={material_styles.flatButtonLabelStyle}
+              />
+            </DialogActions>
+          </Dialog>
+        </div>
 
-        <div style={{margin: '0 50px'}}>
+        <div style={{margin: '0 20px'}}>
           <div className="col s12 m12 l12" style={material_styles.wrapper}>
-            <span className={styles.hint}>Tags:</span>
+            {/*<span className={styles.hint}>Tags:</span>*/}
             {this.state.chipData.map(this.renderChip, this)}
           </div>
 
           <div className="col s12 m12 l12" style={material_styles.wrapper}>
-            <span className={styles.hint}>Please choose tags:</span>
+            <span className={styles.hint}>Click to add tags to your photo(s)</span>
             <div className={styles.tagButtons}>
               {this.state.tagData.map((data) => (
                 <FlatButton
@@ -163,8 +225,9 @@ class UploadPhotoForm extends React.Component {
           </div>
 
           <TextField
-            hintText="Type in the description of your photo(s) here."
-            floatingLabelText="Description:"
+            id="description"
+            hintText="Tell us about the stories of your photo(s)"
+            floatingLabelText="Description"
             multiLine={true}
             fullWidth={true}
             floatingLabelFixed={true}
@@ -172,6 +235,18 @@ class UploadPhotoForm extends React.Component {
             underlineFocusStyle={material_styles.underlineFocusStyle}
             floatingLabelFocusStyle={material_styles.floatingLabelFocusStyle}
             floatingLabelStyle={material_styles.floatingLabelStyle}
+            style={{marginTop: 10}}
+          />
+        </div>
+
+        <div className="col s12 m12 l12" style={{textAlign: 'center', marginTop: 30}}>
+          <RaisedButton
+            label="submit"
+            labelPosition="after"
+            icon={<UploadIcon/>}
+            backgroundColor="#00897b"
+            labelStyle={{color: '#fff'}}
+            onClick={this.handleSubmit}
           />
         </div>
       </div>
@@ -183,4 +258,11 @@ UploadPhotoForm.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default UploadPhotoForm;
+function mapStateToProps({Authentication, Photo}) {
+  return {
+    Authentication,
+    Photo
+  };
+}
+
+export default connect(mapStateToProps)(UploadPhotoForm);

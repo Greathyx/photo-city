@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import {connect} from 'dva';
 import styles from './css/UserPage.css';
 import SwipeableViews from 'react-swipeable-views';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -66,20 +67,20 @@ class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // open: false,
+      open: false,
       slideIndex: 0,
       offset_myPhoto: 0,
     };
   }
 
-  // // 打开上传图片对话框
-  // handleOpen = () => {
-  //   this.setState({open: true,});
-  // };
-  //
-  // handleClose = () => {
-  //   this.setState({open: false});
-  // };
+  // 打开上传图片对话框
+  handleOpen = () => {
+    this.setState({open: true,});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
 
   // 分页监听
   handleChange = (value) => {
@@ -99,10 +100,10 @@ class UserPage extends React.Component {
 
         <Card style={material_styles.cardStyle}>
           <CardHeader
-            title="Sherley Huang"
+            title={this.props.authentication.username}
             subtitle={
               <div>
-                <span>151250064@smail.nju.edu.cn</span>
+                <span>{this.props.authentication.email}</span>
                 <IconButton tooltip="Edit" touch={true} tooltipPosition="bottom-right">
                   <EditIcon/>
                 </IconButton>
@@ -113,17 +114,17 @@ class UserPage extends React.Component {
             subtitleStyle={{fontSize: 16, marginTop: -16}}
             textStyle={material_styles.cardHeaderStyle}
           />
-          {/*<CardActions>*/}
-            {/*<RaisedButton*/}
-              {/*label="Upload"*/}
-              {/*labelPosition="after"*/}
-              {/*icon={<UploadIcon/>}*/}
-              {/*style={material_styles.raisedButton}*/}
-              {/*backgroundColor="#00897b"*/}
-              {/*labelStyle={{color: '#fff'}}*/}
-              {/*onClick={this.handleOpen}*/}
-            {/*/>*/}
-          {/*</CardActions>*/}
+          <CardActions>
+            <RaisedButton
+              label="Upload"
+              labelPosition="after"
+              icon={<UploadIcon/>}
+              style={material_styles.raisedButton}
+              backgroundColor="#00897b"
+              labelStyle={{color: '#fff'}}
+              onClick={this.handleOpen}
+            />
+          </CardActions>
         </Card>
 
         <div className="col s12 m12 l12">
@@ -133,8 +134,8 @@ class UserPage extends React.Component {
             inkBarStyle={material_styles.inkBarColor}
           >
             <Tab label="My posts" value={0} buttonStyle={material_styles.tab}/>
-            <Tab label="Upload" value={1} buttonStyle={material_styles.tab}/>
-            <Tab label="Favourite" value={2} buttonStyle={material_styles.tab}/>
+            <Tab label="Favourite" value={1} buttonStyle={material_styles.tab}/>
+            {/*<Tab label="Upload" value={2} buttonStyle={material_styles.tab}/>*/}
           </Tabs>
           <SwipeableViews
             index={this.state.slideIndex}
@@ -161,13 +162,6 @@ class UserPage extends React.Component {
               </div>
             </div>
 
-            <Paper
-              style={{textAlign:'left', margin: '0 20px', paddingBottom: 20}}
-              zDepth={1}
-            >
-              <UploadPhotoForm/>
-            </Paper>
-
             <div style={{margin: '0 20px'}}>
               <NewPhotoGridList
                 tileData={tileData.test1_tileData}
@@ -175,27 +169,38 @@ class UserPage extends React.Component {
                 height={300}
               />
             </div>
+
+            {/*<Paper*/}
+              {/*style={{textAlign:'left', margin: '0 20px', paddingBottom: 20}}*/}
+              {/*zDepth={1}*/}
+            {/*>*/}
+              {/*<UploadPhotoForm/>*/}
+            {/*</Paper>*/}
           </SwipeableViews>
         </div>
 
-        {/*<Dialog*/}
-          {/*open={this.state.open}*/}
-          {/*maxWidth="md"*/}
-          {/*fullWidth*/}
-        {/*>*/}
-          {/*<DialogTitle>Upload your photo(s)</DialogTitle>*/}
-          {/*<DialogContent>*/}
-            {/*<UploadPhotoForm/>*/}
-          {/*</DialogContent>*/}
-          {/*<DialogActions>*/}
-            {/*<FlatButton*/}
-              {/*label="Cancel"*/}
-              {/*primary={true}*/}
-              {/*onClick={this.handleClose}*/}
-              {/*labelStyle={material_styles.flatButtonLabelStyle}*/}
-            {/*/>*/}
-          {/*</DialogActions>*/}
-        {/*</Dialog>*/}
+        <Dialog
+          open={this.state.open}
+          // maxWidth="md"
+          // fullWidth
+        >
+          <DialogTitle style={{marginLeft: 20, marginTop: 20}}>
+            Upload your photo(s)
+          </DialogTitle>
+
+          <DialogContent>
+            <UploadPhotoForm/>
+          </DialogContent>
+
+          <DialogActions>
+            <FlatButton
+              label="Cancel"
+              primary={true}
+              onClick={this.handleClose}
+              labelStyle={material_styles.flatButtonLabelStyle}
+            />
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }
@@ -205,4 +210,10 @@ UserPage.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default UserPage;
+function mapStateToProps({authentication}) {
+  return {
+    authentication,
+  };
+}
+
+export default connect(mapStateToProps)(UserPage);

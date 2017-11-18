@@ -1,11 +1,3 @@
-.color {
-  color: #00897b;
-}
-
-.input:after {
-  color: #00897b;
-}
-
 .hint {
   font-size: 18px;
   margin-top: 5px;
@@ -17,3 +9,33 @@
   margin-top: 6px;
 }
 
+
+.icon {
+  width: 96px;
+  height: 96px;
+  font-size: 52px;
+  color: #E0E0E0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.icon:hover {
+  width: 96px;
+  height: 96px;
+  font-size: 52px;
+  color: #BDBDBD;
+
+}
+
+/*修改antd默认样式*/
+:global .ant-upload.ant-upload-select-picture-card {
+  border: 1px solid #E0E0E0;
+  border-radius: 10px;
+  background-color: white;
+}
+
+:global .ant-upload.ant-upload-select-picture-card:hover {
+  border: 1px solid #BDBDBD;
+  border-radius: 10px;
+  background-color: white;
+}
