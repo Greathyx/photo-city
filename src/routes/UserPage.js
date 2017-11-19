@@ -67,7 +67,7 @@ class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      // open: false,
       slideIndex: 0,
       offset_myPhoto: 0,
     };
@@ -75,11 +75,19 @@ class UserPage extends React.Component {
 
   // 打开上传图片对话框
   handleOpen = () => {
-    this.setState({open: true,});
+    // this.setState({open: true,});
+    this.props.dispatch({
+      type: 'photo/updateShowUploadForm',
+      payload: {showUploadForm: true}
+    });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    // this.setState({open: false});
+    this.props.dispatch({
+      type: 'photo/updateShowUploadForm',
+      payload: {showUploadForm: false}
+    });
   };
 
   // 分页监听
@@ -180,7 +188,7 @@ class UserPage extends React.Component {
         </div>
 
         <Dialog
-          open={this.state.open}
+          open={this.props.photo.showUploadForm}
           // maxWidth="md"
           // fullWidth
         >
@@ -210,9 +218,10 @@ UserPage.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-function mapStateToProps({authentication}) {
+function mapStateToProps({authentication, photo}) {
   return {
     authentication,
+    photo
   };
 }
 

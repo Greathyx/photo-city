@@ -165,25 +165,10 @@ class UploadPhotoForm extends React.Component {
       }
       tag_string += this.state.chipData[this.state.chipData.length - 1].label;
 
-      // 用户对照片的描述
+      // 获取用户对照片的描述
       let description = document.getElementById("description").value;
 
-      // 先在数据库中动态表中创建新的动态项，获取post的id
-      const post = {
-        // photos: this.state.submitImgList,
-        description: description,
-        authorId: this.props.authentication.userId,
-      };
-      this.props.dispatch({
-        type: 'photo/uploadPost',
-        payload: {
-          ...post,
-        }
-      });
-
-      console.log(this.props.photo.postId);
-
-      // 因为antd的upload组件是一张张传的，所以将图片一张张写入数据库
+      let photoList = [];  // 要写入数据库的图片信息列表
       for (let i = 0; i < this.state.fileList.length; i++) {
         const photo = {
           pid: this.state.fileList[i].uid,
@@ -192,17 +177,23 @@ class UploadPhotoForm extends React.Component {
           sImg: this.state.fileList[i].response.imgUrl,
           bImg: this.state.fileList[i].response.imgUrl,
           tags: tag_string,
-          postId: this.props.photo.postId,
           authorId: this.props.authentication.userId,
         };
-        // console.log(photo);
-        this.props.dispatch({
-          type: 'photo/uploadPhoto',
-          payload: {
-            ...photo,
-          }
-        });
+        photoList.push(photo);
       }
+
+      const param = {
+        description: description,
+        authorId: this.props.authentication.userId,
+        photoList: photoList
+      };
+
+      this.props.dispatch({
+        type: 'photo/upload',
+        payload: {
+          ...param,
+        }
+      });
 
     }
   };

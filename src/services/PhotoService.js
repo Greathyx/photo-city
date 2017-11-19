@@ -7,12 +7,15 @@ import request from '../utils/request';
 
 export async function uploadPhoto(param) {
 
+  // console.log(param);
+
   const formData = new FormData();
   formData.append('pid', param.pid);
   formData.append('origin', param.origin);
   formData.append('sImg', param.sImg);
   formData.append('bImg', param.bImg);
   formData.append('tags', param.tags);
+  formData.append('postId', param.postId);
   formData.append('authorId', param.authorId);
 
   return request('/uploadPhoto', {
