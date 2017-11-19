@@ -56,7 +56,7 @@ class UploadPhotoForm extends React.Component {
     super(props);
     this.state = {
       open: false,
-      chipData: [],
+      chipData: [],  // 存放已选标签
       tagData: [
         {key: 0, label: 'Animal'},
         {key: 1, label: 'Business'},
@@ -77,21 +77,10 @@ class UploadPhotoForm extends React.Component {
       previewVisible: false,
       previewImage: '',
       fileList: [],
+      // todo 删除 ???
+      submitImgList: []  // 存放上传图片的服务器地址
     };
   }
-
-  // 预览上传的图片
-  handlePreview = (file) => {
-    this.setState({
-      previewImage: file.url || file.thumbUrl,
-      open: true
-    });
-  };
-
-  // 关闭预览图片
-  handleCancelPreview = () => {
-    this.setState({open: false});
-  };
 
   // 选择标签
   handleChooseTag(key) {
@@ -132,20 +121,89 @@ class UploadPhotoForm extends React.Component {
   handleUploadChange = ({fileList, file}) => {
     this.setState({fileList});
     if (file.status === 'done') {
-      console.log(file.response.imgUrl);
+      // this.state.submitImgList.push(file.response.imgUrl);
+      // console.log(this.state.submitImgList);
     }
+  };
+
+  // 预览上传的图片
+  handlePreview = (file) => {
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      open: true
+    });
+  };
+
+  // 关闭预览图片
+  handleCancelPreview = () => {
+    this.setState({open: false});
+  };
+
+  // 删除上传图片的回调
+  handleRemovePic = (file) => {
+    // todo
+    return true;
   };
 
   // 上传新动态监听
   handleSubmit = () => {
+    // console.log(this.state.fileList);
     if (this.state.fileList.length === 0) {
       message.warning("Please upload at least one photo!");
     }
-    else if (this.state.chipData.length === 0){
+
+    else if (this.state.chipData.length === 0) {
       message.warning("Please choose at least one tag!");
     }
+
     else {
-      // todo
+      // 将存放tag的列表拼接成字符串
+      let tag_string = "";
+      for (let i = 0; i < this.state.chipData.length - 1; i++) {
+        tag_string += this.state.chipData[i].label;
+        tag_string += ",";
+      }
+      tag_string += this.state.chipData[this.state.chipData.length - 1].label;
+
+      // 用户对照片的描述
+      let description = document.getElementById("description").value;
+
+      // 先在数据库中动态表中创建新的动态项，获取post的id
+      const post = {
+        // photos: this.state.submitImgList,
+        description: description,
+        authorId: this.props.authentication.userId,
+      };
+      this.props.dispatch({
+        type: 'photo/uploadPost',
+        payload: {
+          ...post,
+        }
+      });
+
+      console.log(this.props.photo.postId);
+
+      // 因为antd的upload组件是一张张传的，所以将图片一张张写入数据库
+      for (let i = 0; i < this.state.fileList.length; i++) {
+        const photo = {
+          pid: this.state.fileList[i].uid,
+          origin: this.state.fileList[i].response.imgUrl,
+          // todo sImg先这么写把
+          sImg: this.state.fileList[i].response.imgUrl,
+          bImg: this.state.fileList[i].response.imgUrl,
+          tags: tag_string,
+          postId: this.props.photo.postId,
+          authorId: this.props.authentication.userId,
+        };
+        // console.log(photo);
+        this.props.dispatch({
+          type: 'photo/uploadPhoto',
+          payload: {
+            ...photo,
+          }
+        });
+      }
+
     }
   };
 
@@ -177,8 +235,9 @@ class UploadPhotoForm extends React.Component {
 
         <div className="col s12 m12 l12" style={{marginLeft: 20}}>
           <Upload
-            action="http://127.0.0.1:3000/uploadPhotos"
+            action="http://127.0.0.1:3000/preLoad"
             listType="picture-card"
+            multiple={true}     // 允许同时上传多张图片
             fileList={fileList}
             onPreview={this.handlePreview}
             onChange={this.handleUploadChange}
@@ -258,10 +317,10 @@ UploadPhotoForm.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-function mapStateToProps({Authentication, Photo}) {
+function mapStateToProps({authentication, photo}) {
   return {
-    Authentication,
-    Photo
+    authentication,
+    photo
   };
 }
 

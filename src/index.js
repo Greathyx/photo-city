@@ -18,6 +18,7 @@ const app = dva();
 
 // 3. Model
 app.model(require('./models/Authentication'));
+app.model(require('./models/Photo'));
 
 // 4. Router
 app.router(require('./router'));

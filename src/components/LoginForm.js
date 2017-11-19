@@ -153,9 +153,9 @@ LoginForm.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 };
 
-function mapStateToProps({Authentication}) {
+function mapStateToProps({authentication}) {
   return {
-    Authentication,
+    authentication,
   };
 }
 
